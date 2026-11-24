@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미래 사회 수호대 · 과학과 미래 사회</title>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+@font-face{font-family:'ACinema';src:local('a시네마L'),local('a시네마L Regular'),local('aCinemaL'),local('a시네마'),local('aCinema');}
+*{box-sizing:border-box;font-weight:400 !important;}
+html,body{margin:0;padding:0;}
+body{font-family:'ACinema','a시네마L','a시네마','Gaegu',sans-serif;font-size:19px;color:#343a40;background:linear-gradient(160deg,#e7f5ff 0%,#f3f0ff 50%,#fff4e6 100%);min-height:100vh;line-height:1.55;}
+button,input,select{font-family:inherit;font-size:inherit;}
+h1,h2,h3,h4{margin:.2em 0 .4em;font-weight:400;}
+.hl{color:#e8590c}.hl2{color:#1971c2}.hl3{color:#2f9e44}.hl4{color:#c2255c}.hl5{color:#7048e8}
+/* header */
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 18px;background:#ffffffd9;border-bottom:3px solid #d0ebff;position:sticky;top:0;z-index:50;}
+.title-wrap h1{font-size:26px;margin:0;color:#1864ab;}
+.title-wrap .sub{font-size:15px;color:#868e96;}
+.brand{display:flex;align-items:center;gap:8px;text-align:right;}
+.brand img{height:58px;width:auto;}
+.brand .mail{font-size:14px;color:#495057;}
+/* nav */
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 10px 4px;}
+.navbtn{border:none;border-radius:999px;padding:8px 16px;background:#fff;color:#495057;box-shadow:0 4px 0 #ced4da;cursor:pointer;transition:transform .1s;}
+.navbtn.active{background:#4dabf7;color:#fff;box-shadow:0 4px 0 #1c7ed6;}
+.navbtn.done{background:#d3f9d8;color:#2b8a3e;box-shadow:0 4px 0 #8ce99a;}
+.navbtn.done.active{background:#51cf66;color:#fff;box-shadow:0 4px 0 #2f9e44;}
+.navbtn.locked{opacity:.55;}
+.navbtn:active{transform:translateY(3px);}
+main{max-width:1180px;margin:0 auto;padding:10px 14px 60px;}
+.screen{display:none;animation:fade .35s;}
+.screen.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:#fff;border-radius:22px;padding:18px 20px;box-shadow:0 6px 18px rgba(25,113,194,.10);margin-bottom:16px;}
+.card.soft{background:#f8f9fa;box-shadow:none;border:2px dashed #dee2e6;}
+.stage-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.stage-badge{font-size:15px;background:#fff3bf;color:#e67700;padding:4px 12px;border-radius:999px;}
+.stage-head h2{font-size:28px;color:#1864ab;margin:0;}
+.btn{border:none;border-radius:16px;padding:10px 18px;background:#4dabf7;color:#fff;box-shadow:0 5px 0 #1c7ed6;cursor:pointer;margin:4px 3px;transition:transform .08s,box-shadow .08s;}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #1c7ed6;}
+.btn.green{background:#51cf66;box-shadow:0 5px 0 #2f9e44;}
+.btn.orange{background:#ff922b;box-shadow:0 5px 0 #e8590c;}
+.btn.purple{background:#9775fa;box-shadow:0 5px 0 #6741d9;}
+.btn.pink{background:#f783ac;box-shadow:0 5px 0 #d6336c;}
+.btn.gray{background:#adb5bd;box-shadow:0 5px 0 #868e96;}
+.btn.white{background:#fff;color:#495057;box-shadow:0 5px 0 #ced4da;}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+.btn.small{padding:6px 12px;font-size:16px;border-radius:12px;}
+.btn.sel{outline:4px solid #ffd43b;}
+.mtabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;}
+.mtab{border:none;border-radius:14px;padding:8px 14px;background:#e9ecef;color:#495057;cursor:pointer;}
+.mtab.active{background:#ffd43b;color:#5c3c00;}
+.mtab.done::after{content:' ✅';}
+.mpanel{display:none;}
+.mpanel.active{display:block;animation:fade .3s;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr;}.title-wrap h1{font-size:21px}.brand img{height:44px}}
+.fb{border-radius:14px;padding:10px 14px;margin:10px 0;display:none;}
+.fb.show{display:block;animation:fade .3s;}
+.fb.ok{background:#ebfbee;border:2px solid #8ce99a;color:#2b8a3e;}
+.fb.no{background:#fff5f5;border:2px solid #ffa8a8;color:#c92a2a;}
+.fb.info{background:#e7f5ff;border:2px solid #a5d8ff;color:#1864ab;}
+.goal{background:#fff9db;border-radius:14px;padding:8px 14px;margin:8px 0;color:#5c3c00;}
+.goal .chk{margin-right:6px;}
+.opt{display:block;width:100%;text-align:left;border:2px solid #dee2e6;background:#fff;border-radius:14px;padding:10px 14px;margin:7px 0;cursor:pointer;color:#343a40;transition:all .15s;}
+.opt:hover{border-color:#74c0fc;background:#f1f8ff;}
+.opt.right{border-color:#51cf66;background:#ebfbee;color:#2b8a3e;}
+.opt.wrong{border-color:#ff8787;background:#fff5f5;color:#c92a2a;text-decoration:line-through;}
+.opt:disabled{cursor:default;}
+.shake{animation:shake .4s;}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:#343a40;color:#fff;padding:10px 20px;border-radius:999px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;}
+.toast.show{opacity:1;}
+.overlay{position:fixed;inset:0;background:rgba(33,37,41,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:16px;}
+.overlay.show{display:flex;}
+.pop{background:#fff;border-radius:26px;padding:26px;max-width:520px;width:100%;text-align:center;animation:pop .4s;}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+.big-emoji{font-size:64px;}
+table.tbl{border-collapse:collapse;width:100%;font-size:17px;}
+.tbl th,.tbl td{border:2px solid #e9ecef;padding:6px 8px;text-align:center;}
+.tbl th{background:#f1f3f5;}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:15px;}
+.pill.pos{background:#ffe3e3;color:#c92a2a}.pill.neg{background:#e7f5ff;color:#1864ab}
+.svgbox svg{width:100%;height:auto;display:block;}
+.sample{display:inline-flex;flex-direction:column;align-items:center;border:3px solid #e9ecef;border-radius:16px;padding:8px 10px;margin:4px;cursor:pointer;background:#fff;min-width:150px;}
+.sample.sel{border-color:#4dabf7;background:#e7f5ff;}
+.sample small{color:#868e96;font-size:15px;}
+.kit{border:3px solid #e9ecef;border-radius:16px;padding:10px 12px;margin:6px 0;cursor:pointer;background:#fff;}
+.kit.sel{border-color:#ff922b;background:#fff4e6;}
+.toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:14px;background:#f1f3f5;cursor:pointer;margin:4px;user-select:none;}
+.toggle.on{background:#d3f9d8;color:#2b8a3e;}
+.toggle .sw{width:42px;height:24px;border-radius:12px;background:#ced4da;position:relative;transition:.2s;}
+.toggle .sw::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;}
+.toggle.on .sw{background:#51cf66;}
+.toggle.on .sw::after{left:21px;}
+canvas{width:100%;height:auto;display:block;border-radius:16px;background:#f8f9fa;}
+.legend span{margin-right:12px;font-size:16px;}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:4px;vertical-align:middle;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{border:2px solid #dee2e6;border-radius:999px;padding:6px 14px;background:#fff;cursor:pointer;}
+.chip.sel{border-color:#9775fa;background:#f3f0ff;color:#6741d9;}
+.chip.ok{border-color:#51cf66;background:#ebfbee;color:#2b8a3e;}
+.chip.bad{border-color:#ff8787;background:#fff5f5;color:#c92a2a;}
+.chip.donep{border-color:#51cf66;background:#d3f9d8;color:#2b8a3e;}
+.tech{border:2px solid #e9ecef;border-radius:14px;padding:8px 10px;background:#fff;cursor:pointer;text-align:left;}
+.tech.sel{border-color:#9775fa;background:#f3f0ff;}
+.tech.ok{border-color:#51cf66;background:#ebfbee;}
+.tech.bad{border-color:#ff8787;background:#fff5f5;}
+.argcard{background:linear-gradient(135deg,#fff9db,#fff4e6);border-radius:16px;padding:12px 16px;margin:8px 0;border-left:6px solid #ffa94d;}
+.pipe{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0 10px;}
+.pipe .ps{padding:6px 12px;border-radius:12px;background:#f1f3f5;color:#adb5bd;}
+.pipe .ps.on{background:#4dabf7;color:#fff;}
+.pipe .ar{color:#adb5bd;}
+.place{border:3px solid #e9ecef;border-radius:18px;padding:10px;text-align:center;background:#fff;}
+.place .emo{font-size:40px;}
+.place .val{font-size:26px;color:#1971c2;min-height:38px;}
+.clock{font-size:30px;color:#e8590c;}
+.meter{height:24px;border-radius:12px;background:#f1f3f5;overflow:hidden;position:relative;margin:4px 0 10px;}
+.meter>div{height:100%;border-radius:12px;transition:width .5s,background .5s;}
+.meter .tgt{position:absolute;top:0;bottom:0;width:3px;background:#343a40;}
+.mlabel{display:flex;justify-content:space-between;font-size:17px;}
+input[type=range]{width:100%;accent-color:#7048e8;height:28px;}
+.scen{display:flex;flex-wrap:wrap;gap:8px;}
+.scen .chip small{color:#868e96;}
+.issue{padding:6px 10px;border-radius:10px;background:#fff5f5;color:#c92a2a;margin:4px 0;font-size:17px;}
+.issue.good{background:#ebfbee;color:#2b8a3e;}
+.sl-row{background:#f8f9fa;border-radius:14px;padding:8px 12px;margin:8px 0;}
+.sl-row .top{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;}
+.sl-row .val{color:#7048e8;font-size:20px;}
+.dual{font-size:16px;margin-top:6px;display:none;}
+.dual.show{display:block;}
+.dual .g{color:#2b8a3e}.dual .b{color:#c92a2a}
+.dash-col h4{margin:4px 0;}
+.policy{border:2px solid #e9ecef;border-radius:14px;padding:8px 10px;margin:6px 0;cursor:pointer;background:#fff;display:flex;justify-content:space-between;gap:8px;align-items:center;}
+.policy.sel{border-color:#20c997;background:#e6fcf5;}
+.policy .cost{color:#e8590c;white-space:nowrap;}
+.budget{font-size:22px;}
+.steps{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0;}
+.steps .st{padding:5px 12px;border-radius:12px;background:#f1f3f5;color:#adb5bd;font-size:16px;}
+.steps .st.on{background:#9775fa;color:#fff;}
+.steps .st.fin{background:#d3f9d8;color:#2b8a3e;}
+.argbtn{display:flex;justify-content:space-between;align-items:center;gap:8px;border:2px solid #e9ecef;border-radius:14px;padding:8px 12px;margin:6px 0;background:#fff;}
+.argbtn .pc{display:flex;gap:4px;}
+.scard{border:3px solid #e9ecef;border-radius:18px;padding:12px;background:#fff;cursor:pointer;text-align:left;}
+.scard:hover{border-color:#b197fc;}
+.scard.fin{border-color:#8ce99a;background:#f4fce3;}
+.scard .emo{font-size:38px;}
+.ethic{display:inline-flex;align-items:center;gap:6px;border:2px solid #dee2e6;border-radius:14px;padding:8px 12px;margin:4px;cursor:pointer;background:#fff;}
+.ethic.sel{border-color:#7048e8;background:#f3f0ff;color:#5f3dc4;}
+.qprog{height:12px;background:#f1f3f5;border-radius:6px;overflow:hidden;margin:6px 0 12px;}
+.qprog>div{height:100%;background:linear-gradient(90deg,#74c0fc,#9775fa);transition:width .4s;}
+/* report */
+#report{background:#fff;border-radius:24px;padding:26px;max-width:900px;margin:0 auto;border:4px solid #d0ebff;}
+.rep-head{display:flex;justify-content:space-between;align-items:center;border-bottom:3px dashed #d0ebff;padding-bottom:10px;margin-bottom:12px;gap:10px;}
+.rep-head img{height:66px;}
+.grade{font-size:92px;line-height:1;width:130px;height:130px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin:0 auto;}
+.gA{background:linear-gradient(135deg,#40c057,#20c997)}.gB{background:linear-gradient(135deg,#339af0,#22b8cf)}.gC{background:linear-gradient(135deg,#fcc419,#ff922b)}.gD{background:linear-gradient(135deg,#ff922b,#fa5252)}.gF{background:linear-gradient(135deg,#868e96,#495057)}
+.barrow{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:17px;}
+.barrow .nm{width:170px;flex-shrink:0;}
+.barrow .bar{flex:1;height:18px;background:#f1f3f5;border-radius:9px;overflow:hidden;}
+.barrow .bar>div{height:100%;border-radius:9px;}
+.barrow .sc{width:66px;text-align:right;}
+.fbitem{background:#f8f9fa;border-radius:14px;padding:10px 14px;margin:8px 0;border-left:6px solid #74c0fc;}
+.fbitem.weak{border-left-color:#ff922b;}
+.upgrade{background:#fff4e6;border-radius:16px;padding:12px 16px;margin-top:12px;}
+.uprow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed #ffd8a8;flex-wrap:wrap;}
+.preview-img{max-width:100%;max-height:60vh;border-radius:12px;border:2px solid #dee2e6;-webkit-touch-callout:default;}
+.intro-hero{text-align:center;padding:20px 10px;}
+.intro-hero .em{font-size:70px;letter-spacing:6px;}
+.intro-hero h2{font-size:34px;color:#1864ab;}
+.inrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0;}
+.inrow input{border:3px solid #d0ebff;border-radius:14px;padding:10px 14px;width:220px;}
+.map4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px;}
+@media(max-width:820px){.map4{grid-template-columns:1fr 1fr;}}
+.map4 .m{background:#fff;border-radius:18px;padding:12px;box-shadow:0 4px 0 #dee2e6;text-align:center;}
+.map4 .m .e{font-size:40px;}
+.spin{transform-origin:center;transform-box:fill-box;animation:spin 1.6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.blink{animation:blink 1s infinite;}
+@keyframes blink{50%{opacity:.3}}
+.retry-banner{display:none;background:#fff3bf;border-radius:14px;padding:8px 14px;margin-bottom:10px;color:#5c3c00;}
+.retry-banner.show{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="title-wrap">
+    <h1>🚀 미래 사회 수호대</h1>
+    <div class="sub">통합과학2 · 3단원 과학과 미래 사회</div>
+  </div>
+  <div class="brand">
+    <div class="mail">EARTH LJY<br><span id="brandMail">earthljy@ai.jne.kr</span></div>
+    <img src="data:image/png;base64,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" alt="EARTH LJY 로고">
+  </div>
+</header>
+<nav id="nav"></nav>
+<main>
+<div class="retry-banner" id="retryBanner"><span>🔁 등급 올리기 도전 중! 이 미션을 다시 완료하면 더 높은 점수가 반영돼요.</span><button class="btn small orange" onclick="goResult()">🏆 미션 성공 화면으로</button></div>
+
+<!-- INTRO -->
+<section class="screen active" id="sc-intro">
+  <div class="card intro-hero">
+    <div class="em">🦠📊🏙️⚖️</div>
+    <h2>미래 사회 수호대에 오신 것을 환영합니다!</h2>
+    <p>2050년, 지구에는 <span class="hl">감염병 대유행</span>, <span class="hl2">기후 변화</span>, <span class="hl3">자원·에너지 고갈</span>, <span class="hl4">고령화</span>, <span class="hl5">재해·재난</span> 같은 문제가 쌓여 있어요.<br>
+    수호대원인 여러분은 <span class="hl2">과학</span>을 무기로 4개의 스테이지를 통과해 미래 사회를 지켜야 해요.</p>
+    <div class="inrow">
+      <input id="inId" placeholder="학번 (예: 10101)" inputmode="numeric">
+      <input id="inName" placeholder="이름">
+    </div>
+    <button class="btn orange" style="font-size:22px;padding:12px 30px" onclick="startGame()">🚀 수호대 출동!</button>
+    <div class="map4">
+      <div class="m"><div class="e">🦠</div>STAGE 1<br><span class="hl">과학의 유용성과 필요성</span><br><small>감염병 진단·추적, 미래 문제 논증</small></div>
+      <div class="m"><div class="e">📊</div>STAGE 2<br><span class="hl2">빅데이터 활용</span><br><small>미세먼지 측정, 빅데이터 리스크</small></div>
+      <div class="m"><div class="e">🏙️</div>STAGE 3<br><span class="hl3">과학기술의 발전과 한계</span><br><small>미래 도시 양면성 균형</small></div>
+      <div class="m"><div class="e">⚖️</div>STAGE 4<br><span class="hl5">사회적 쟁점과 과학 윤리</span><br><small>과학 윤리 위원회</small></div>
+    </div>
+    <p style="font-size:16px;color:#868e96;margin-top:14px">스테이지는 순서대로 열려요. 모든 스테이지를 마치면 <span class="hl">최종 점검 퀴즈</span>와 <span class="hl3">미션 성공 보고서</span>가 기다리고 있어요.</p>
+  </div>
+</section>
+
+<!-- STAGE 1 -->
+<section class="screen" id="sc-s1">
+  <div class="card">
+    <div class="stage-head"><span class="stage-badge">STAGE 1</span><h2>🦠 감염병 대응 연구소</h2></div>
+    <p>과학은 어떻게 우리를 지켜 줄까요? 감염병을 <span class="hl">진단</span>하고 <span class="hl2">추적</span>하는 과학기술을 직접 다뤄 보고, 미래 사회 문제 해결에 과학이 <span class="hl3">필요한 까닭</span>을 논증해 보세요.</p>
+    <div class="mtabs" id="tabs-s1">
+      <button class="mtab active" data-m="m11" onclick="openM('s1','m11')">① 진단 키트 실험실</button>
+      <button class="mtab" data-m="m12" onclick="openM('s1','m12')">② 감염 확산 추적</button>
+      <button class="mtab" data-m="m13" onclick="openM('s1','m13')">③ 미래 문제 논증 보드</button>
+    </div>
+  </div>
+
+  <!-- M11 -->
+  <div class="mpanel active" id="p-m11">
+    <div class="card">
+      <h3>🧪 미션 ①: 진단 키트 실험실</h3>
+      <div class="goal" id="m11-goal"></div>
+      <div class="grid2">
+        <div>
+          <h4>1️⃣ 검사할 시료 선택</h4>
+          <div id="m11-samples"></div>
+          <h4>2️⃣ 진단 방법 선택</h4>
+          <div class="kit" id="kit-ag" onclick="m11Kit('ag')">🧫 <span class="hl4">신속 항원 검사</span> (단백질 검출)<br><small>바이러스의 <span class="hl">단백질(항원)</span>이 키트 속 항체와 결합하면 T선이 나타나요. 약 15분이면 결과를 알 수 있지만, 바이러스 양이 적으면 검출이 어려워요.</small></div>
+          <div class="kit" id="kit-pcr" onclick="m11Kit('pcr')">🧬 <span class="hl2">분자 진단 검사(PCR)</span> (핵산 검출)<br><small>바이러스의 <span class="hl">핵산(유전 물질)</span>을 반복 복제·증폭하여 형광 신호로 검출해요. 시간은 더 걸리지만 적은 양도 검출할 수 있어요.</small></div>
+          <button class="btn orange" onclick="m11Run()">▶ 검사 시작</button>
+          <button class="btn gray small" onclick="resetM11()">↺ 미션 처음부터</button>
+        </div>
+        <div>
+          <h4>3️⃣ 검사 결과 판독</h4>
+          <div class="svgbox card soft" id="m11-vis" style="min-height:200px;display:flex;align-items:center;justify-content:center;color:#adb5bd">시료와 진단 방법을 고른 뒤 검사를 시작하세요.</div>
+          <div id="m11-judge" style="display:none;text-align:center">
+            <div>판독 결과는? <small>(검사 화면을 보고 직접 판단해요)</small></div>
+            <button class="btn pink" onclick="m11Judge('pos')">➕ 양성</button>
+            <button class="btn" onclick="m11Judge('neg')">➖ 음성</button>
+          </div>
+          <div class="fb" id="m11-fb"></div>
+          <h4>📋 결과 기록표</h4>
+          <table class="tbl" id="m11-table"></table>
+        </div>
+      </div>
+      <div id="m11-q" style="display:none" class="card soft">
+        <h4>🤔 분석 질문: <span class="hl">환자 B</span>의 두 검사 결과가 다르게 나온 까닭으로 가장 알맞은 것은?</h4>
+        <div id="m11-opts"></div>
+        <div class="fb" id="m11-qfb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M12 -->
+  <div class="mpanel" id="p-m12">
+    <div class="card">
+      <h3>📍 미션 ②: 감염 확산 추적 시뮬레이터</h3>
+      <div class="goal" id="m12-goal"></div>
+      <div class="grid2">
+        <div>
+          <canvas id="simCv" width="600" height="340"></canvas>
+          <div class="legend" style="margin-top:6px"><span><i class="dot" style="background:#74c0fc"></i>건강</span><span><i class="dot" style="background:#fa5252"></i>감염</span><span><i class="dot" style="background:#fff;border:2px dashed #e03131"></i>격리</span><span><i class="dot" style="background:#8ce99a"></i>회복</span></div>
+          <div style="font-size:18px">📅 <span id="simDay">0</span>일째 · 현재 감염자 <span class="hl" id="simInf">0</span>명 · 누적 감염자 <span class="hl4" id="simTot">0</span>명</div>
+        </div>
+        <div>
+          <h4>🛡 대응 방법 설정</h4>
+          <div class="toggle" id="tgDiag" onclick="simToggle('diag')"><span class="sw"></span>🧪 진단 검사 (감염자 찾아 격리)</div>
+          <div class="toggle" id="tgTrace" onclick="simToggle('trace')"><span class="sw"></span>📱 접촉자 추적 (위치·출입 기록)</div>
+          <div class="fb info" id="simWarn"></div>
+          <div><button class="btn orange" id="simRunBtn" onclick="simStart()">▶ 40일 시뮬레이션 실행</button></div>
+          <h4>📈 감염자 수 변화 비교</h4>
+          <div class="svgbox" id="simChart"></div>
+          <table class="tbl" id="simRuns" style="margin-top:6px"></table>
+          <button class="btn gray small" onclick="resetM12()">↺ 미션 처음부터</button>
+        </div>
+      </div>
+      <div id="m12-q" style="display:none" class="card soft">
+        <h4>🤔 분석 질문: <span class="hl">진단 검사 + 접촉자 추적</span>을 함께 했을 때 최대 감염자 수가 크게 줄어든 까닭은?</h4>
+        <div id="m12-opts"></div>
+        <div class="fb" id="m12-qfb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M13 -->
+  <div class="mpanel" id="p-m13">
+    <div class="card">
+      <h3>🗺 미션 ③: 미래 문제 해결 논증 보드</h3>
+      <div class="goal" id="m13-goal"></div>
+      <h4>1️⃣ 해결할 미래 사회 문제 선택</h4>
+      <div class="chips" id="m13-probs"></div>
+      <div id="m13-work" style="display:none">
+        <h4 style="margin-top:12px">2️⃣ 이 문제 해결에 활용할 과학기술 카드 <span class="hl">2장</span> 고르기</h4>
+        <div class="grid3" id="m13-techs"></div>
+        <button class="btn green" onclick="m13Check()">📝 논증 완성하기</button>
+        <div class="fb" id="m13-fb"></div>
+      </div>
+      <h4 style="margin-top:14px">📚 완성된 논증 카드</h4>
+      <div id="m13-args"><div style="color:#adb5bd">아직 완성된 논증이 없어요.</div></div>
+      <button class="btn gray small" onclick="resetM13()">↺ 미션 처음부터</button>
+    </div>
+  </div>
+</section>
+
+<!-- STAGE 2 -->
+<section class="screen" id="sc-s2">
+  <div class="card">
+    <div class="stage-head"><span class="stage-badge">STAGE 2</span><h2>📊 빅데이터 관제 센터</h2></div>
+    <p>우리 주변의 생활 데이터를 직접 <span class="hl">수집·저장·처리·분석</span>해 보고, 빅데이터를 활용할 때의 <span class="hl3">장점</span>과 <span class="hl4">문제점</span>을 검증해 보세요.</p>
+    <div class="mtabs" id="tabs-s2">
+      <button class="mtab active" data-m="m21" onclick="openM('s2','m21')">① 미세먼지 측정소</button>
+      <button class="mtab" data-m="m22" onclick="openM('s2','m22')">② 빅데이터 리스크 검증</button>
+    </div>
+  </div>
+  <div class="mpanel active" id="p-m21">
+    <div class="card">
+      <h3>🌫 미션 ①: 학교 미세먼지 측정소</h3>
+      <div class="goal" id="m21-goal"></div>
+      <div class="pipe" id="m21-pipe"><span class="ps" data-p="0">① 수집</span><span class="ar">➜</span><span class="ps" data-p="1">② 저장</span><span class="ar">➜</span><span class="ps" data-p="2">③ 처리</span><span class="ar">➜</span><span class="ps" data-p="3">④ 분석·활용</span></div>
+      <div class="grid2">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div>⏰ 현재 시각 <span class="clock" id="m21-clock">08:00</span></div><button class="btn purple small" id="m21-next" onclick="m21Next()">다음 시각 ➜</button></div>
+          <div class="grid3" id="m21-places" style="margin-top:8px"></div>
+          <div style="font-size:16px;margin-top:8px;color:#868e96">미세먼지(PM10) 등급: <span style="color:#1c7ed6">좋음 0~30</span> · <span style="color:#2f9e44">보통 31~80</span> · <span style="color:#e8590c">나쁨 81~150</span> · <span style="color:#c92a2a">매우 나쁨 151 이상</span> (μg/m³)</div>
+          <h4>💾 데이터 저장소</h4>
+          <table class="tbl" id="m21-table"></table>
+          <button class="btn green" id="m21-proc" style="display:none" onclick="m21Process()">⚙ 데이터 처리하기 (평균 계산)</button>
+          <button class="btn gray small" onclick="resetM21()">↺ 미션 처음부터</button>
+        </div>
+        <div>
+          <h4>📈 시간대별 미세먼지 농도 그래프</h4>
+          <div class="svgbox" id="m21-chart"></div>
+          <div id="m21-q" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mpanel" id="p-m22">
+    <div class="card">
+      <h3>🛰 미션 ②: 빅데이터 활용 & 리스크 검증</h3>
+      <div class="goal" id="m22-goal"></div>
+      <h4>1️⃣ 빅데이터 활용 분야 선택</h4>
+      <div class="scen" id="m22-scen"></div>
+      <div class="grid2" style="margin-top:10px">
+        <div>
+          <div class="card soft" id="m22-desc" style="margin-bottom:10px"></div>
+          <h4>2️⃣ 데이터 관리 설정</h4>
+          <div class="sl-row"><div class="top"><span>📦 데이터 양</span><span class="val" id="m22-volv">1만 건</span></div><input type="range" id="m22-vol" min="0" max="100" value="20" oninput="m22Update()"></div>
+          <div class="toggle" id="tg-q" onclick="m22T('q')"><span class="sw"></span>✅ 데이터 품질 검증 (오류·이상값 제거)</div>
+          <div class="toggle" id="tg-b" onclick="m22T('b')"><span class="sw"></span>⚖ 편향 보정 (다양한 집단·지역 데이터)</div>
+          <div class="toggle" id="tg-e" onclick="m22T('e')"><span class="sw"></span>🔒 암호화·비식별화 (개인 정보 보호)</div>
+        </div>
+        <div>
+          <h4>📟 분석 결과 대시보드</h4>
+          <div class="mlabel"><span>🎯 예측 정확도</span><span id="m22-accv">0%</span></div>
+          <div class="meter"><div id="m22-acc"></div><span class="tgt" style="left:85%"></span></div>
+          <div class="mlabel"><span>🚨 보안 위험도</span><span id="m22-riskv">0%</span></div>
+          <div class="meter"><div id="m22-risk"></div><span class="tgt" style="left:25%"></span></div>
+          <div style="font-size:15px;color:#868e96">목표: 정확도 85% 이상(검은 선 오른쪽), 보안 위험도 25% 이하(검은 선 왼쪽)</div>
+          <div id="m22-issues"></div>
+          <button class="btn orange" onclick="m22Submit()">📤 분석 시스템 승인 요청</button>
+          <div class="fb" id="m22-fb"></div>
+        </div>
+      </div>
+      <div id="m22-cards" style="display:none" class="card soft">
+        <h4>🔎 문제 상황 판별: 각 사례는 빅데이터의 어떤 문제점에 해당할까요?</h4>
+        <div id="m22-clist"></div>
+      </div>
+      <button class="btn gray small" onclick="resetM22()">↺ 미션 처음부터</button>
+    </div>
+  </div>
+</section>
+
+<!-- STAGE 3 -->
+<section class="screen" id="sc-s3">
+  <div class="card">
+    <div class="stage-head"><span class="stage-badge">STAGE 3</span><h2>🏙️ 미래 도시 설계실</h2></div>
+    <p>과학기술은 삶을 편리하게 하지만 <span class="hl4">한계와 부작용</span>도 함께 가져와요. 4가지 기술을 도시에 도입하고, 예산 안에서 <span class="hl3">보완책</span>을 골라 <span class="hl">양면성의 균형</span>을 맞춰 보세요.</p>
+    <div class="goal" id="m31-goal"></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h4>🌆 미래 도시 미리보기</h4>
+      <div class="svgbox" id="city"></div>
+      <h4>🎚 기술 도입률 조절 <small style="color:#868e96">(각 기술의 '양면성 보기'도 눌러 보세요)</small></h4>
+      <div id="m31-sliders"></div>
+    </div>
+    <div class="card">
+      <div class="grid2" style="gap:10px">
+        <div class="dash-col"><h4 class="hl3">👍 유용성 지표</h4><div id="m31-good"></div></div>
+        <div class="dash-col"><h4 class="hl4">⚠ 한계·부작용 지표</h4><div id="m31-bad"></div></div>
+      </div>
+      <h4>🧰 보완책 선택 <span class="budget">· 남은 예산 <span class="hl" id="m31-budget">100</span>/100</span></h4>
+      <div id="m31-policies"></div>
+      <button class="btn orange" onclick="m31Submit()">🏛 도시 설계 승인 요청</button>
+      <button class="btn gray small" onclick="resetM31()">↺ 미션 처음부터</button>
+      <div class="fb" id="m31-fb"></div>
+      <div id="m31-q" style="display:none" class="card soft">
+        <h4>🤔 정리 질문: 과학기술의 양면성에 대한 설명으로 가장 적절한 것은?</h4>
+        <div id="m31-opts"></div>
+        <div class="fb" id="m31-qfb"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGE 4 -->
+<section class="screen" id="sc-s4">
+  <div class="card">
+    <div class="stage-head"><span class="stage-badge">STAGE 4</span><h2>⚖️ 과학 윤리 위원회</h2></div>
+    <p>과학기술이 발전하면서 생긴 <span class="hl">사회적 쟁점</span>을 위원회에서 다뤄요. <span class="hl2">탐색 → 논박 → 조정·합의 → 대안 생성</span> 순서로 토론하고, 결정한 대안이 <span class="hl5">과학 윤리</span>에 맞는지 점검하세요.</p>
+    <div class="goal" id="m41-goal"></div>
+    <div class="grid3" id="m41-list"></div>
+  </div>
+  <div class="card" id="m41-work" style="display:none"></div>
+</section>
+
+<!-- QUIZ -->
+<section class="screen" id="sc-quiz">
+  <div class="card">
+    <div class="stage-head"><span class="stage-badge">FINAL</span><h2>📝 최종 점검 퀴즈</h2></div>
+    <p>지금까지 배운 내용을 확인해요. 틀리면 <span class="hl">피드백</span>을 읽고 다시 고를 수 있어요. (점수는 <span class="hl2">처음 고른 답</span>으로 계산돼요.)</p>
+    <div class="qprog"><div id="qbar" style="width:0%"></div></div>
+    <div id="quizBox"></div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="screen" id="sc-result">
+  <div style="text-align:center;margin-bottom:12px">
+    <button class="btn green" onclick="saveImage()">📸 결과 이미지 저장하기</button>
+  </div>
+  <div id="report"></div>
+</section>
+</main>
+
+<div class="overlay" id="ov"><div class="pop" id="ovBox"></div></div>
+<div class="overlay" id="pv"><div class="pop" style="max-width:720px">
+  <h3>📸 결과 이미지 미리보기</h3>
+  <img id="pvImg" class="preview-img" alt="결과 이미지">
+  <p id="pvTip" style="font-size:16px;color:#495057"></p>
+  <button class="btn green" onclick="doSave()">💾 이미지 저장하기</button>
+  <button class="btn gray" onclick="closePv()">닫기</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===================== 공통 ===================== */
+const $=id=>document.getElementById(id);
+const MAX={m11:8,m12:6,m13:6,m21:10,m22:10,m31:20,m41:20,quiz:20};
+const MNAME={m11:'진단 키트 실험실',m12:'감염 확산 추적',m13:'미래 문제 논증',m21:'미세먼지 측정소',m22:'빅데이터 리스크 검증',m31:'미래 도시 양면성 균형',m41:'과학 윤리 위원회',quiz:'최종 점검 퀴즈'};
+const MSTAGE={m11:'s1',m12:'s1',m13:'s1',m21:'s2',m22:'s2',m31:'s3',m41:'s4',quiz:'quiz'};
+const STAGE_M={s1:['m11','m12','m13'],s2:['m21','m22'],s3:['m31'],s4:['m41'],quiz:['quiz']};
+const ORDER=['intro','s1','s2','s3','s4','quiz','result'];
+const NAV_LABEL={intro:'🏠 시작',s1:'🦠 STAGE 1',s2:'📊 STAGE 2',s3:'🏙️ STAGE 3',s4:'⚖️ STAGE 4',quiz:'📝 퀴즈',result:'🏆 미션 성공'};
+const ST={name:'',sid:'',started:false,unlocked:0,done:{},score:{},detail:{},cur:'intro',retry:false};
+
+let AC=null;
+function tone(f,d,type,v,delay){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const t0=AC.currentTime+(delay||0);const o=AC.createOscillator(),g=AC.createGain();o.type=type||'sine';o.frequency.value=f;g.gain.setValueAtTime(v||0.12,t0);g.gain.exponentialRampToValueAtTime(0.001,t0+d);o.connect(g);g.connect(AC.destination);o.start(t0);o.stop(t0+d+0.03);}catch(e){}}
+const SFX={click:()=>tone(660,.08,'triangle',.1),ok:()=>{tone(523,.12);tone(659,.12,'sine',.12,.1);tone(784,.2,'sine',.12,.2)},no:()=>{tone(240,.18,'sawtooth',.07);tone(180,.25,'sawtooth',.07,.15)},win:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,.28,'triangle',.12,i*.12))},beep:()=>tone(1000,.04,'square',.04)};
+
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2200);}
+function fb(id,type,html){const e=$(id);e.className='fb show '+type;e.innerHTML=html;}
+function fbHide(id){const e=$(id);e.className='fb';e.innerHTML='';}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function stageDone(s){return STAGE_M[s].every(m=>ST.done[m]);}
+function renderNav(){
+  const n=$('nav');n.innerHTML='';
+  ORDER.forEach((k,i)=>{
+    const b=document.createElement('button');b.className='navbtn';b.textContent=NAV_LABEL[k];
+    const locked=i>ST.unlocked;
+    if(locked)b.classList.add('locked');
+    if(STAGE_M[k]&&stageDone(k))b.classList.add('done');
+    if(k===ST.cur)b.classList.add('active');
+    if(locked)b.textContent='🔒 '+NAV_LABEL[k].replace(/^\S+\s/,'');
+    b.onclick=()=>{if(locked){SFX.no();toast('이전 단계를 먼저 완료해야 열려요!');return;}SFX.click();show(k);};
+    n.appendChild(b);
+  });
+}
+function show(k){
+  ST.cur=k;document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $('sc-'+k).classList.add('active');renderNav();
+  $('retryBanner').classList.toggle('show',ST.retry&&k!=='result'&&k!=='intro');
+  if(k==='result')renderResult();
+  if(k==='quiz')renderQuiz();
+  if(k==='s3')m31Render();
+  if(k==='s4')m41RenderList();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function openM(s,m){
+  document.querySelectorAll('#tabs-'+s+' .mtab').forEach(t=>t.classList.toggle('active',t.dataset.m===m));
+  STAGE_M[s].forEach(x=>$('p-'+x).classList.toggle('active',x===m));
+  SFX.click();
+}
+function refreshTabs(){
+  ['s1','s2'].forEach(s=>document.querySelectorAll('#tabs-'+s+' .mtab').forEach(t=>t.classList.toggle('done',!!ST.done[t.dataset.m])));
+}
+function startGame(){
+  const n=$('inName').value.trim(),id=$('inId').value.trim();
+  if(!n||!id){SFX.no();toast('학번과 이름을 모두 입력해 주세요!');return;}
+  ST.name=n;ST.sid=id;ST.started=true;if(ST.unlocked<1)ST.unlocked=1;SFX.win();show('s1');
+}
+function completeMission(key,score,detail){
+  const prev=ST.score[key];
+  if(prev===undefined||score>=prev){ST.score[key]=score;ST.detail[key]=detail;}
+  ST.done[key]=true;refreshTabs();
+  const s=MSTAGE[key];const idx=ORDER.indexOf(s);
+  let stageClear=false;
+  if(stageDone(s)&&ST.unlocked<=idx){ST.unlocked=idx+1;stageClear=true;}
+  renderNav();
+  SFX.win();
+  const improved=prev!==undefined&&score>prev;
+  let html=`<div class="big-emoji">${stageClear?'🎉':'⭐'}</div><h2>${stageClear?(s==='quiz'?'퀴즈 완료!':'STAGE CLEAR!'):'미션 완료!'}</h2><p>${MNAME[key]} 획득 점수: <span class="hl">${ST.score[key]}</span> / ${MAX[key]}점${improved?' <span class="hl3">(점수 상승!)</span>':''}</p>`;
+  let btns='';
+  if(ST.retry){btns+=`<button class="btn orange" onclick="closeOv();goResult()">🏆 미션 성공 화면으로</button>`;}
+  if(stageClear&&!ST.retry){const nx=ORDER[idx+1];btns+=`<button class="btn green" onclick="closeOv();show('${nx}')">${nx==='result'?'🏆 미션 성공 보기':'다음 단계로 ➜'}</button>`;}
+  else if(!stageClear&&!ST.retry){const rest=STAGE_M[s].filter(m=>!ST.done[m]);if(rest.length){btns+=`<button class="btn green" onclick="closeOv();openM('${s}','${rest[0]}')">다음 미션: ${MNAME[rest[0]]} ➜</button>`;}}
+  btns+=`<button class="btn gray" onclick="closeOv()">닫기</button>`;
+  openOv(html+btns);
+}
+function openOv(h){$('ovBox').innerHTML=h;$('ov').classList.add('show');}
+function closeOv(){$('ov').classList.remove('show');}
+function goResult(){ST.retry=false;show('result');}
+
+/* 공통 객관식 렌더러 */
+function renderMC(boxId,fbId,q,onDone){
+  const box=$(boxId);box.innerHTML='';fbHide(fbId);let tries=0;
+  shuffle(q.opts.map((o,i)=>({o,i}))).forEach(({o,i})=>{
+    const b=document.createElement('button');b.className='opt';b.innerHTML=o;
+    b.onclick=()=>{
+      tries++;
+      if(i===q.ans){SFX.ok();b.classList.add('right');box.querySelectorAll('.opt').forEach(x=>x.disabled=true);fb(fbId,'ok','⭕ 정답! '+q.exp);onDone(tries===1);}
+      else{SFX.no();b.classList.add('wrong','shake');b.disabled=true;fb(fbId,'no','❌ '+(q.fbs&&q.fbs[i]?q.fbs[i]:'다시 생각해 보세요.')+' 다시 골라 보세요.');}
+    };
+    box.appendChild(b);
+  });
+}
+
+/* ===================== M11 진단 키트 ===================== */
+const SAMPLES={A:{name:'환자 A',desc:'고열·기침 3일째',emo:'🤒',load:'high'},B:{name:'환자 B',desc:'확진자 접촉 1일째 · 증상 없음',emo:'😐',load:'low'},C:{name:'환자 C',desc:'증상 없음 · 접촉 없음',emo:'🙂',load:'none'}};
+const TRUTH={ag:{high:'pos',low:'neg',none:'neg'},pcr:{high:'pos',low:'pos',none:'neg'}};
+const CT={high:17,low:30,none:null};
+let M11;
+function resetM11(){M11={sel:null,kit:null,busy:false,res:{},first:{},pending:null,qFirst:null,qShown:false};
+  $('m11-vis').innerHTML='시료와 진단 방법을 고른 뒤 검사를 시작하세요.';$('m11-judge').style.display='none';fbHide('m11-fb');$('m11-q').style.display='none';renderM11();}
+function renderM11(){
+  $('m11-samples').innerHTML=Object.entries(SAMPLES).map(([k,s])=>`<div class="sample ${M11.sel===k?'sel':''}" onclick="m11Sel('${k}')"><span style="font-size:34px">${s.emo}🧪</span>${s.name}<small>${s.desc}</small></div>`).join('');
+  $('kit-ag').classList.toggle('sel',M11.kit==='ag');$('kit-pcr').classList.toggle('sel',M11.kit==='pcr');
+  const cell=(s,k)=>{const r=M11.res[s+'_'+k];return r?`<span class="pill ${r}">${r==='pos'?'양성':'음성'}</span>`:'<span style="color:#ced4da">-</span>';};
+  $('m11-table').innerHTML='<tr><th>시료</th><th>신속 항원 검사</th><th>분자 진단(PCR)</th></tr>'+Object.keys(SAMPLES).map(s=>`<tr><td>${SAMPLES[s].name}</td><td>${cell(s,'ag')}</td><td>${cell(s,'pcr')}</td></tr>`).join('');
+  const allOne=Object.keys(SAMPLES).every(s=>M11.res[s+'_ag']||M11.res[s+'_pcr']);
+  const bBoth=M11.res.B_ag&&M11.res.B_pcr;
+  $('m11-goal').innerHTML=`🎯 목표 <span class="chk">${allOne?'✅':'⬜'}</span>세 시료를 모두 한 번 이상 검사하기 <span class="chk">${bBoth?'✅':'⬜'}</span><span class="hl">환자 B</span>를 두 방법으로 모두 검사해 비교하기`;
+  if(allOne&&bBoth&&!M11.qShown){
+    M11.qShown=true;$('m11-q').style.display='block';
+    renderMC('m11-opts','m11-qfb',{opts:['PCR은 바이러스의 <span class="hl">핵산을 증폭</span>하므로 적은 양의 바이러스도 검출할 수 있기 때문이다.','신속 항원 검사는 바이러스의 핵산을 검출하기 때문이다.','PCR은 사람 몸속의 항체를 검출하기 때문이다.','환자 B는 감염되지 않았는데 PCR이 잘못 판정했기 때문이다.'],ans:0,
+      exp:'감염 초기에는 바이러스 양이 적어 <span class="hl4">항원(단백질)</span>이 잘 검출되지 않지만, PCR은 <span class="hl2">핵산을 수십 번 복제·증폭</span>하기 때문에 적은 양도 찾아낼 수 있어요. 그래서 신속 항원 검사가 음성이어도 의심 증상이나 접촉 이력이 있으면 PCR로 확인해요.',
+      fbs:[null,'신속 항원 검사는 핵산이 아니라 바이러스의 단백질(항원)을 검출해요.','PCR은 항체가 아니라 바이러스의 핵산(유전 물질)을 증폭해 검출해요.','환자 B는 확진자와 접촉했고, PCR에서 증폭 곡선이 기준선을 넘었어요. 감염 초기라 바이러스 양이 적었던 거예요.']},
+      first=>{M11.qFirst=first;m11Finish();});
+  }
+}
+function m11Sel(k){if(M11.busy)return;M11.sel=k;SFX.click();renderM11();}
+function m11Kit(k){if(M11.busy)return;M11.kit=k;SFX.click();renderM11();}
+function m11Run(){
+  if(M11.busy)return;if(M11.pending){toast('먼저 현재 검사 결과를 판독하세요!');return;}
+  if(!M11.sel||!M11.kit){SFX.no();toast('시료와 진단 방법을 모두 고르세요!');return;}
+  M11.busy=true;fbHide('m11-fb');$('m11-judge').style.display='none';
+  const s=SAMPLES[M11.sel];const key=M11.sel+'_'+M11.kit;
+  const done=()=>{M11.busy=false;M11.pending=key;$('m11-judge').style.display='block';};
+  if(M11.kit==='ag')animAg(s.load,done);else animPcr(s.load,done);
+}
+function animAg(load,done){
+  const tInt={high:1,low:0,none:0}[load];
+  $('m11-vis').innerHTML=`<svg viewBox="0 0 380 170"><rect x="10" y="30" width="360" height="100" rx="40" fill="#f8f9fa" stroke="#adb5bd" stroke-width="3"/>
+  <circle cx="70" cy="80" r="26" fill="#fff" stroke="#868e96" stroke-width="3"/><text x="70" y="140" text-anchor="middle" font-size="15" fill="#868e96">시료</text>
+  <rect x="140" y="62" width="200" height="36" rx="8" fill="#fff" stroke="#868e96" stroke-width="2"/>
+  <rect id="agFlow" x="140" y="62" width="0" height="36" rx="8" fill="#ffdeeb" opacity=".8"/>
+  <rect id="agT" x="220" y="64" width="9" height="32" fill="#c2255c" opacity="0"/><rect id="agC" x="290" y="64" width="9" height="32" fill="#c2255c" opacity="0"/>
+  <text x="224" y="56" text-anchor="middle" font-size="16" fill="#495057">T</text><text x="294" y="56" text-anchor="middle" font-size="16" fill="#495057">C</text>
+  <circle id="agDrop" cx="70" cy="10" r="8" fill="#ff8787"/><text id="agTime" x="190" y="160" text-anchor="middle" font-size="16" fill="#e8590c">시료 떨어뜨리는 중...</text></svg>`;
+  const t0=performance.now();
+  function f(t){const p=Math.min(1,(t-t0)/2600);
+    const d=$('agDrop');if(!d)return;
+    if(p<.2){d.setAttribute('cy',10+p/.2*70);}else d.setAttribute('opacity',0);
+    const fp=Math.max(0,(p-.2)/.6);$('agFlow').setAttribute('width',Math.min(1,fp)*200);
+    $('agTime').textContent=p<.2?'시료 떨어뜨리는 중...':p<1?`반응 중... ${Math.min(15,Math.round(fp*15))}분 경과`:'15분 경과 · 결과 창을 판독하세요';
+    if(p>.75){const q=(p-.75)/.25;$('agC').setAttribute('opacity',q);$('agT').setAttribute('opacity',q*tInt);}
+    if(p<1)requestAnimationFrame(f);else{SFX.beep();done();}}
+  requestAnimationFrame(f);
+}
+function fluor(c,load){const ct=CT[load];if(!ct)return 0.03+0.01*Math.sin(c*1.3);return 0.03+0.97/(1+Math.exp(-0.45*(c-ct-3)));}
+function animPcr(load,done){
+  $('m11-vis').innerHTML=`<svg viewBox="0 0 380 220"><rect x="0" y="0" width="380" height="220" fill="#fff"/>
+  <line x1="40" y1="180" x2="350" y2="180" stroke="#495057" stroke-width="2"/><line x1="40" y1="20" x2="40" y2="180" stroke="#495057" stroke-width="2"/>
+  <text x="195" y="212" text-anchor="middle" font-size="14" fill="#495057">증폭 횟수(사이클)</text><text x="14" y="100" font-size="14" fill="#495057" transform="rotate(-90 14 100)" text-anchor="middle">형광 세기</text>
+  ${[0,10,20,30,40].map(c=>`<text x="${40+c*7.5}" y="195" font-size="12" text-anchor="middle" fill="#868e96">${c}</text>`).join('')}
+  <line x1="40" y1="${180-0.2*150}" x2="350" y2="${180-0.2*150}" stroke="#fa5252" stroke-dasharray="6 4" stroke-width="2"/><text x="348" y="${172-0.2*150}" font-size="12" text-anchor="end" fill="#fa5252">판정 기준선</text>
+  <line x1="${40+35*7.5}" y1="20" x2="${40+35*7.5}" y2="180" stroke="#adb5bd" stroke-dasharray="3 4"/><text x="${40+35*7.5}" y="16" font-size="11" text-anchor="middle" fill="#868e96">35사이클</text>
+  <path id="pcrPath" d="" fill="none" stroke="#1c7ed6" stroke-width="4" stroke-linecap="round"/>
+  <text id="pcrTxt" x="60" y="40" font-size="15" fill="#7048e8">사이클 0 · 핵산 1배</text></svg>`;
+  const t0=performance.now();
+  function f(t){const p=Math.min(1,(t-t0)/3200);const cmax=p*40;let d='';
+    for(let c=0;c<=cmax;c+=0.5){const x=40+c*7.5,y=180-fluor(c,load)*150;d+=(c===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    const pp=$('pcrPath');if(!pp)return;pp.setAttribute('d',d);
+    const cc=Math.floor(cmax);$('pcrTxt').textContent=`사이클 ${cc} · 핵산 약 2^${cc}배로 증폭`;
+    if(p<1)requestAnimationFrame(f);else{SFX.beep();$('pcrTxt').textContent='증폭 완료 · 곡선이 기준선을 넘었는지 판독하세요';done();}}
+  requestAnimationFrame(f);
+}
+function m11Judge(ans){
+  const key=M11.pending;if(!key)return;const [s,k]=key.split('_');const truth=TRUTH[k][SAMPLES[s].load];
+  const right=ans===truth;if(M11.first[key]===undefined)M11.first[key]=right;
+  if(right){SFX.ok();M11.res[key]=truth;M11.pending=null;$('m11-judge').style.display='none';
+    let extra='';
+    if(s==='B'&&k==='ag')extra=' 환자 B는 확진자와 접촉했는데도 음성이 나왔어요. <span class="hl">다른 방법으로도 검사</span>해 볼까요?';
+    if(s==='B'&&k==='pcr')extra=' 바이러스 양이 적어도 <span class="hl2">핵산을 증폭</span>하니 기준선을 넘었어요!';
+    fb('m11-fb','ok',`⭕ 정확한 판독! ${SAMPLES[s].name} → ${truth==='pos'?'양성':'음성'}.${extra}`);renderM11();}
+  else{SFX.no();fb('m11-fb','no',k==='ag'?'❌ 다시 보세요. <span class="hl">C선만</span> 나타나면 음성, <span class="hl">C선과 T선이 모두</span> 나타나면 양성이에요.':'❌ 다시 보세요. 증폭 곡선이 <span class="hl">빨간 기준선을 넘으면</span> 양성, 끝까지 넘지 못하면 음성이에요.');}
+}
+function m11Finish(){
+  const keys=Object.keys(M11.first);const ok=keys.filter(k=>M11.first[k]).length;
+  const judgeScore=Math.round(ok/keys.length*4);const qScore=M11.qFirst?4:2;
+  completeMission('m11',judgeScore+qScore,{ok,total:keys.length,qFirst:M11.qFirst});
+}
+
+/* ===================== M12 확산 추적 ===================== */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+const SIMC={W:600,H:340,N:140,P:0.06,R:12,SPD:25,DAYS:40,REC:10,DD:3,DP:0.2};
+let SIM={diag:false,trace:false,running:false,A:[],day:0,s:0,peak:0,total:0,curve:[]};
+let M12;
+function resetM12(){SIM.running=false;$('simRunBtn').disabled=false;M12={runs:[],qShown:false};SIM.diag=false;SIM.trace=false;$('tgDiag').classList.remove('on');$('tgTrace').classList.remove('on');$('m12-q').style.display='none';simInit();simDraw();renderM12();}
+function simToggle(k){if(SIM.running)return;SIM[k]=!SIM[k];SFX.click();$('tgDiag').classList.toggle('on',SIM.diag);$('tgTrace').classList.toggle('on',SIM.trace);renderM12();}
+function simInit(){
+  const C=SIMC;SIM.rm=rng(7);SIM.ri=rng(11);SIM.rd=rng(23);SIM.A=[];
+  for(let i=0;i<C.N;i++){const a=SIM.rm()*Math.PI*2;SIM.A.push({x:10+SIM.rm()*(C.W-20),y:10+SIM.rm()*(C.H-20),vx:Math.cos(a)*1.2,vy:Math.sin(a)*1.2,st:i<4?'I':'S',inf:0,q:false,qu:0,log:{}});}
+  SIM.day=0;SIM.s=0;SIM.peak=4;SIM.total=4;SIM.curve=[4];
+}
+function simStep(){
+  const C=SIMC,A=SIM.A,rm=SIM.rm,ri=SIM.ri,rd=SIM.rd;SIM.s++;
+  for(const a of A){if(a.q)continue;if(rm()<0.03){const t=rm()*Math.PI*2;a.vx=Math.cos(t)*1.2;a.vy=Math.sin(t)*1.2;}a.x+=a.vx;a.y+=a.vy;if(a.x<5||a.x>C.W-5)a.vx*=-1;if(a.y<5||a.y>C.H-5)a.vy*=-1;}
+  for(let i=0;i<C.N;i++){const a=A[i];if(a.q)continue;for(let j=i+1;j<C.N;j++){const b=A[j];if(b.q)continue;const dx=a.x-b.x,dy=a.y-b.y;
+    if(dx*dx+dy*dy<C.R*C.R){if(SIM.trace){a.log[j]=SIM.day;b.log[i]=SIM.day;}
+      if(a.st==='I'&&b.st==='S'&&ri()<C.P){b.st='I';b.inf=SIM.day;SIM.total++;}else if(b.st==='I'&&a.st==='S'&&ri()<C.P){a.st='I';a.inf=SIM.day;SIM.total++;}}}}
+  if(SIM.s%C.SPD===0){SIM.day++;
+    for(const a of A){if(a.st==='I'&&SIM.day-a.inf>=C.REC){a.st='R';a.q=false;}}
+    for(let i=0;i<C.N;i++){const a=A[i];if(SIM.diag&&a.st==='I'&&!a.q&&SIM.day-a.inf>=C.DD&&rd()<C.DP){a.q=true;a.qu=999;
+      if(SIM.trace){for(const k in a.log){if(SIM.day-a.log[k]<=4){const o=A[k];if(!o.q){o.q=true;o.qu=SIM.day+7;}}}}}}
+    for(const a of A){if(a.q&&a.st==='S'&&a.qu<=SIM.day)a.q=false;}
+    const c=A.filter(a=>a.st==='I').length;SIM.peak=Math.max(SIM.peak,c);SIM.curve.push(c);}
+}
+function simDraw(){
+  const cv=$('simCv'),x=cv.getContext('2d');x.fillStyle='#f8f9fa';x.fillRect(0,0,600,340);
+  x.strokeStyle='#e9ecef';x.lineWidth=1;for(let i=60;i<600;i+=60){x.beginPath();x.moveTo(i,0);x.lineTo(i,340);x.stroke();}for(let j=60;j<340;j+=60){x.beginPath();x.moveTo(0,j);x.lineTo(600,j);x.stroke();}
+  for(const a of SIM.A){
+    x.beginPath();x.arc(a.x,a.y,5,0,Math.PI*2);
+    x.fillStyle=a.st==='I'?'#fa5252':a.st==='R'?'#8ce99a':'#74c0fc';x.globalAlpha=a.q?0.45:1;x.fill();x.globalAlpha=1;
+    if(a.q){x.setLineDash([3,3]);x.strokeStyle='#e03131';x.lineWidth=1.5;x.beginPath();x.arc(a.x,a.y,9,0,Math.PI*2);x.stroke();x.setLineDash([]);}
+  }
+  $('simDay').textContent=SIM.day;$('simInf').textContent=SIM.A.filter(a=>a.st==='I').length;$('simTot').textContent=SIM.total;
+}
+function polLabel(d,t){return d&&t?'진단+추적':d?'진단만':t?'추적만':'대응 없음';}
+const RUNCOL=['#fa5252','#ff922b','#7048e8','#20c997','#1c7ed6','#e64980'];
+function simStart(){
+  if(SIM.running)return;SFX.click();simInit();SIM.running=true;$('simRunBtn').disabled=true;
+  const live={label:polLabel(SIM.diag,SIM.trace),curve:SIM.curve};
+  function loop(){if(!SIM.running)return;for(let k=0;k<3;k++){simStep();if(SIM.day>=SIMC.DAYS)break;}simDraw();drawSimChart(live);
+    if(SIM.day<SIMC.DAYS)requestAnimationFrame(loop);else{SIM.running=false;$('simRunBtn').disabled=false;
+      M12.runs.push({label:live.label,diag:SIM.diag,trace:SIM.trace,peak:SIM.peak,total:SIM.total,curve:SIM.curve.slice()});if(M12.runs.length>6)M12.runs.shift();SFX.ok();renderM12();}}
+  requestAnimationFrame(loop);
+}
+function drawSimChart(live){
+  const W=380,H=200,px=d=>40+d*(320/40),py=v=>170-v/SIMC.N*150;
+  let s=`<svg viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#fff"/><line x1="40" y1="170" x2="360" y2="170" stroke="#495057"/><line x1="40" y1="20" x2="40" y2="170" stroke="#495057"/>`;
+  [0,10,20,30,40].forEach(d=>s+=`<text x="${px(d)}" y="186" font-size="12" text-anchor="middle" fill="#868e96">${d}</text>`);
+  [0,35,70,105,140].forEach(v=>s+=`<text x="34" y="${py(v)+4}" font-size="11" text-anchor="end" fill="#868e96">${v}</text>`);
+  s+=`<text x="200" y="199" font-size="12" text-anchor="middle" fill="#495057">날짜(일)</text><text x="12" y="95" font-size="12" fill="#495057" transform="rotate(-90 12 95)" text-anchor="middle">감염자 수(명)</text>`;
+  const lines=M12.runs.map((r,i)=>({c:r.curve,col:RUNCOL[i%6],lb:'#'+(i+1)+' '+r.label}));if(live)lines.push({c:live.curve,col:'#343a40',lb:live.label+'(진행 중)'});
+  lines.forEach((l,i)=>{s+=`<polyline fill="none" stroke="${l.col}" stroke-width="3" points="${l.c.map((v,d)=>px(d)+','+py(v)).join(' ')}"/>`;s+=`<text x="355" y="${30+i*15}" font-size="12" text-anchor="end" fill="${l.col}">${l.lb}</text>`;});
+  $('simChart').innerHTML=s+'</svg>';
+}
+function renderM12(){
+  const hasNone=M12.runs.some(r=>!r.diag&&!r.trace),hasBoth=M12.runs.some(r=>r.diag&&r.trace);
+  $('m12-goal').innerHTML=`🎯 목표 <span class="chk">${hasNone?'✅':'⬜'}</span><span class="hl4">대응 없음</span>으로 실행 <span class="chk">${hasBoth?'✅':'⬜'}</span><span class="hl3">진단 + 접촉자 추적</span>으로 실행 → 두 결과 비교 <small>(진단만 켠 실험도 해 보면 좋아요)</small>`;
+  if(SIM.trace&&!SIM.diag)fb('simWarn','info','💡 접촉자를 추적하려면 먼저 <span class="hl">감염자를 진단</span>해 찾아내야 해요. 진단 검사도 함께 켜 보세요!');else fbHide('simWarn');
+  $('simRuns').innerHTML='<tr><th>실험</th><th>대응</th><th>최대 감염자</th><th>누적 감염자</th></tr>'+(M12.runs.length?M12.runs.map((r,i)=>`<tr><td style="color:${RUNCOL[i%6]}">#${i+1}</td><td>${r.label}</td><td>${r.peak}명</td><td>${r.total}명</td></tr>`).join(''):'<tr><td colspan="4" style="color:#adb5bd">아직 실험 기록이 없어요</td></tr>');
+  drawSimChart(null);
+  if(hasNone&&hasBoth&&!M12.qShown){M12.qShown=true;$('m12-q').style.display='block';
+    renderMC('m12-opts','m12-qfb',{opts:['감염자를 빨리 <span class="hl">진단해 격리</span>하고, 접촉자까지 <span class="hl">추적</span>해 추가 전파 고리를 끊었기 때문이다.','바이러스가 시간이 지나 스스로 약해졌기 때문이다.','진단 검사가 몸속의 바이러스를 직접 없애기 때문이다.','접촉자 추적으로 사람들의 이동 속도가 빨라졌기 때문이다.'],ans:0,
+      exp:'진단 기술로 감염자를 찾아 격리하고, 위치 정보·출입 기록 같은 데이터로 <span class="hl2">접촉자를 추적</span>해 감염 전 단계에서 격리하면 확산을 크게 줄일 수 있어요. 이것이 감염병 대응에서 과학의 <span class="hl3">유용성</span>이에요.',
+      fbs:[null,'두 실험은 같은 조건에서 대응 방법만 달랐어요. 바이러스의 성질은 변하지 않았어요.','진단은 감염 여부를 확인하는 기술이지 치료 기술이 아니에요.','추적 기술은 이동 속도와 관계없고, 접촉한 사람을 찾아내는 기술이에요.']},
+      first=>{completeMission('m12',3+(first?3:1),{qFirst:first,runs:M12.runs.map(r=>({label:r.label,peak:r.peak,total:r.total}))});});
+  }
+}
+
+/* ===================== M13 논증 보드 ===================== */
+const PROBS={pan:{n:'감염병 대유행',e:'🦠'},cli:{n:'기후 변화',e:'🌡'},res:{n:'자원·에너지 고갈',e:'⛽'},age:{n:'고령화',e:'👵'},dis:{n:'재해·재난',e:'🌋'}};
+const TECHS=[
+ {id:'diag',n:'핵산·단백질 진단 기술',e:'🧬',ok:['pan'],ev:'감염자를 빠르고 정확하게 찾아낼 수 있다'},
+ {id:'trace',n:'빅데이터 접촉자 추적',e:'📱',ok:['pan'],ev:'위치·출입 기록으로 접촉자를 찾아 확산을 막을 수 있다'},
+ {id:'vac',n:'백신·치료제 개발',e:'💉',ok:['pan'],ev:'면역을 형성하거나 병을 치료해 피해를 줄일 수 있다'},
+ {id:'ren',n:'신재생 에너지(태양광·풍력)',e:'☀',ok:['cli','res'],ev:'화석 연료 사용과 온실 기체 배출을 줄이고 고갈되지 않는 에너지를 얻을 수 있다'},
+ {id:'ccs',n:'탄소 포집·저장 기술',e:'🏭',ok:['cli'],ev:'대기 중으로 나가는 이산화 탄소를 모아 저장할 수 있다'},
+ {id:'its',n:'지능형 교통 체계(ITS)',e:'🚦',ok:['cli','res'],ev:'교통 흐름을 최적화해 연료 낭비와 배출 가스를 줄일 수 있다'},
+ {id:'care',n:'돌봄 로봇·원격 의료',e:'🤖',ok:['age'],ev:'노인의 생활과 건강 관리를 돕고 의료 접근성을 높일 수 있다'},
+ {id:'farm',n:'스마트 팜',e:'🌱',ok:['age','cli'],ev:'적은 노동력으로 기후 변화에도 안정적으로 작물을 기를 수 있다'},
+ {id:'quake',n:'지진·해일 조기 경보',e:'📡',ok:['dis'],ev:'재해 발생을 빨리 알려 대피 시간을 확보할 수 있다'},
+ {id:'sat',n:'인공위성·드론 관측',e:'🛰',ok:['dis','cli'],ev:'넓은 지역의 피해 상황과 기후 변화를 실시간으로 관측할 수 있다'},
+ {id:'recy',n:'자원 재활용(도시 광산)',e:'♻',ok:['res'],ev:'폐전자 제품에서 금속 자원을 회수해 자원 고갈을 늦출 수 있다'},
+ {id:'game',n:'고사양 게임 그래픽 기술',e:'🎮',ok:[],ev:''}
+];
+let M13;
+function resetM13(){M13={prob:null,pick:[],done:{},wrong:0,args:[]};fbHide('m13-fb');$('m13-work').style.display='none';renderM13();}
+function renderM13(){
+  const n=Object.keys(M13.done).length;
+  $('m13-goal').innerHTML=`🎯 목표 <span class="chk">${n>=2?'✅':'⬜'}</span>서로 다른 미래 사회 문제 <span class="hl">2개</span>에 대해 과학기술 근거로 논증 완성하기 (${n}/2)`;
+  $('m13-probs').innerHTML=Object.entries(PROBS).map(([k,p])=>`<span class="chip ${M13.done[k]?'donep':M13.prob===k?'sel':''}" onclick="m13Prob('${k}')">${p.e} ${p.n}${M13.done[k]?' ✔':''}</span>`).join('');
+  if(M13.prob){$('m13-work').style.display='block';
+    $('m13-techs').innerHTML=TECHS.map(t=>`<button class="tech ${M13.pick.includes(t.id)?'sel':''}" data-id="${t.id}" onclick="m13Pick('${t.id}')"><span style="font-size:24px">${t.e}</span> ${t.n}</button>`).join('');}
+  $('m13-args').innerHTML=M13.args.length?M13.args.map(a=>`<div class="argcard">📣 <span class="hl">주장</span>: 미래 사회의 <span class="hl4">${a.p}</span> 문제를 해결하려면 과학이 필요하다.<br>📌 <span class="hl2">근거 1</span>: ${a.t1.n}은(는) ${a.t1.ev}.<br>📌 <span class="hl2">근거 2</span>: ${a.t2.n}은(는) ${a.t2.ev}.</div>`).join(''):'<div style="color:#adb5bd">아직 완성된 논증이 없어요.</div>';
+}
+function m13Prob(k){if(M13.done[k]){toast('이미 논증을 완성한 문제예요. 다른 문제를 골라 보세요!');return;}M13.prob=k;M13.pick=[];fbHide('m13-fb');SFX.click();renderM13();}
+function m13Pick(id){const i=M13.pick.indexOf(id);if(i>=0)M13.pick.splice(i,1);else{if(M13.pick.length>=2){toast('카드는 2장까지 고를 수 있어요');return;}M13.pick.push(id);}SFX.click();renderM13();}
+function m13Check(){
+  if(M13.pick.length<2){SFX.no();toast('과학기술 카드를 2장 고르세요!');return;}
+  const ts=M13.pick.map(id=>TECHS.find(t=>t.id===id));const bad=ts.filter(t=>!t.ok.includes(M13.prob));
+  if(bad.length){M13.wrong+=bad.length;SFX.no();
+    fb('m13-fb','no','❌ '+bad.map(t=>t.ok.length?`<span class="hl">${t.n}</span>은(는) 주로 ${t.ok.map(o=>PROBS[o].n).join('·')} 문제 해결에 쓰여요.`:`<span class="hl">${t.n}</span>은(는) 미래 사회 문제 해결과 직접 관련된 과학기술이 아니에요.`).join(' ')+` <span class="hl2">${PROBS[M13.prob].n}</span>의 원인을 다시 떠올리며 골라 보세요.`);
+    bad.forEach(t=>{const el=document.querySelector(`#m13-techs .tech[data-id="${t.id}"]`);if(el)el.classList.add('bad','shake');});return;}
+  SFX.ok();M13.done[M13.prob]=true;M13.args.push({p:PROBS[M13.prob].n,t1:ts[0],t2:ts[1]});
+  fb('m13-fb','ok',`⭕ 훌륭한 논증이에요! <span class="hl2">${ts[0].n}</span>과(와) <span class="hl2">${ts[1].n}</span>은(는) ${PROBS[M13.prob].n} 문제 해결에 과학이 필요하다는 타당한 근거가 돼요.`);
+  M13.prob=null;M13.pick=[];renderM13();$('m13-work').style.display='block';$('m13-techs').innerHTML='<div style="color:#868e96">위에서 다음 문제를 골라 보세요.</div>';
+  if(Object.keys(M13.done).length>=2){$('m13-work').style.display='none';const sc=Math.max(2,6-M13.wrong);completeMission('m13',sc,{wrong:M13.wrong,args:M13.args.map(a=>({p:a.p,t1:a.t1.n,t2:a.t2.n}))});}
+}
+
+/* ===================== M21 미세먼지 ===================== */
+const TIMES=['08:00','10:00','12:00','14:00','16:00'];
+const PLACES=[{k:'cls',n:'교실',e:'🏫',base:[28,45,52,47,36],col:'#1c7ed6'},{k:'grd',n:'운동장',e:'⚽',base:[52,70,112,96,74],col:'#e8590c'},{k:'gym',n:'실내 체육관',e:'🏀',base:[38,55,70,82,95],col:'#7048e8'}];
+let M21;
+function grade(v){return v<=30?['좋음','#1c7ed6']:v<=80?['보통','#2f9e44']:v<=150?['나쁨','#e8590c']:['매우 나쁨','#c92a2a'];}
+function resetM21(){M21={t:0,data:{cls:[],grd:[],gym:[]},busy:false,processed:false,q1:null,q2:null};$('m21-q').style.display='none';$('m21-q').innerHTML='';$('m21-proc').style.display='none';renderM21();}
+function m21Count(){return PLACES.reduce((s,p)=>s+M21.data[p.k].filter(v=>v!==undefined).length,0);}
+function avg(a){return a.reduce((s,v)=>s+v,0)/a.length;}
+function renderM21(){
+  const cnt=m21Count();
+  $('m21-goal').innerHTML=`🎯 목표 <span class="chk">${cnt>=15?'✅':'⬜'}</span>5개 시각 × 3개 장소 측정 (${cnt}/15) <span class="chk">${M21.processed?'✅':'⬜'}</span>데이터 처리 <span class="chk">${M21.q2!==null?'✅':'⬜'}</span>분석 결과로 대응 방안 결정`;
+  $('m21-clock').textContent=TIMES[M21.t];
+  $('m21-places').innerHTML=PLACES.map(p=>{const v=M21.data[p.k][M21.t];const g=v!==undefined?grade(v):null;
+    return `<div class="place"><div class="emo">${p.e}</div>${p.n}<div class="val" id="pv-${p.k}" style="color:${g?g[1]:'#adb5bd'}">${v!==undefined?v:'--'}</div><div style="font-size:15px;color:${g?g[1]:'#adb5bd'}">${g?g[0]:'미측정'}</div><button class="btn small" ${v!==undefined||M21.processed?'disabled':''} onclick="m21Measure('${p.k}')">📡 측정</button></div>`;}).join('');
+  $('m21-next').disabled=M21.t>=4||PLACES.some(p=>M21.data[p.k][M21.t]===undefined);
+  $('m21-table').innerHTML='<tr><th>장소</th>'+TIMES.map(t=>`<th>${t.slice(0,2)}시</th>`).join('')+(M21.processed?'<th>평균</th>':'')+'</tr>'+PLACES.map(p=>`<tr><td style="color:${p.col}">${p.n}</td>`+TIMES.map((t,i)=>`<td>${M21.data[p.k][i]!==undefined?M21.data[p.k][i]:''}</td>`).join('')+(M21.processed?`<td style="color:${p.col}">${avg(M21.data[p.k]).toFixed(1)}</td>`:'')+'</tr>').join('');
+  $('m21-proc').style.display=cnt>=15&&!M21.processed?'inline-block':'none';
+  const pipe=[cnt>0,cnt>0,M21.processed,M21.processed];document.querySelectorAll('#m21-pipe .ps').forEach((e,i)=>e.classList.toggle('on',pipe[i]));
+  drawM21Chart();
+}
+function m21Measure(k){
+  if(M21.busy)return;M21.busy=true;const p=PLACES.find(x=>x.k===k);const el=$('pv-'+k);let n=0;
+  const target=p.base[M21.t]+Math.round(Math.random()*4-2);
+  const iv=setInterval(()=>{n++;el.textContent=Math.round(Math.random()*150);SFX.beep();if(n>=8){clearInterval(iv);M21.data[k][M21.t]=target;M21.busy=false;SFX.ok();renderM21();}},80);
+}
+function m21Next(){if(M21.t<4){M21.t++;SFX.click();renderM21();}}
+function m21Process(){SFX.win();M21.processed=true;renderM21();m21Questions();}
+function drawM21Chart(){
+  const px=i=>60+i*80,py=v=>220-v/160*190;
+  let s=`<svg viewBox="0 0 420 260"><rect width="420" height="260" fill="#fff"/>`;
+  [[0,30,'#e7f5ff','좋음'],[30,80,'#ebfbee','보통'],[80,150,'#fff4e6','나쁨'],[150,160,'#fff5f5','']].forEach(([a,b,c,l])=>{s+=`<rect x="40" y="${py(b)}" width="360" height="${py(a)-py(b)}" fill="${c}"/>`;if(l)s+=`<text x="396" y="${py(b)+14}" font-size="12" text-anchor="end" fill="#868e96">${l}</text>`;});
+  s+=`<line x1="40" y1="220" x2="400" y2="220" stroke="#495057" stroke-width="2"/><line x1="40" y1="20" x2="40" y2="220" stroke="#495057" stroke-width="2"/>`;
+  TIMES.forEach((t,i)=>s+=`<text x="${px(i)}" y="236" font-size="12" text-anchor="middle" fill="#495057">${t}</text>`);
+  [0,40,80,120,160].forEach(v=>s+=`<text x="34" y="${py(v)+4}" font-size="11" text-anchor="end" fill="#868e96">${v}</text>`);
+  s+=`<text x="220" y="254" font-size="12" text-anchor="middle" fill="#495057">시간</text><text x="12" y="120" font-size="12" fill="#495057" transform="rotate(-90 12 120)" text-anchor="middle">농도(μg/m³)</text>`;
+  PLACES.forEach((p,pi)=>{const pts=[];M21.data[p.k].forEach((v,i)=>{if(v!==undefined)pts.push([px(i),py(v)]);});
+    if(pts.length>1)s+=`<polyline fill="none" stroke="${p.col}" stroke-width="3" points="${pts.map(q=>q.join(',')).join(' ')}"/>`;
+    pts.forEach(q=>s+=`<circle cx="${q[0]}" cy="${q[1]}" r="4.5" fill="${p.col}"/>`);
+    if(M21.processed){const a=avg(M21.data[p.k]);s+=`<line x1="40" x2="400" y1="${py(a)}" y2="${py(a)}" stroke="${p.col}" stroke-dasharray="5 4" stroke-width="1.5"/>`;}
+    s+=`<text x="${50+pi*120}" y="14" font-size="13" fill="${p.col}">● ${p.n}${M21.processed?' 평균 '+avg(M21.data[p.k]).toFixed(0):''}</text>`;});
+  $('m21-chart').innerHTML=s+'</svg>';
+}
+function m21Questions(){
+  const box=$('m21-q');box.style.display='block';
+  const g12=M21.data.grd[2];
+  box.innerHTML=`<div class="card soft"><h4>🔍 분석 ①: 하루 평균 미세먼지 농도가 가장 높은 장소는?</h4><div id="m21-o1"></div><div class="fb" id="m21-f1"></div></div>
+  <div class="card soft" id="m21-q2box" style="display:none"><h4>🔍 분석 ②: 12시 운동장 농도는 <span class="hl">${g12} μg/m³(${grade(g12)[0]})</span>예요. 이 데이터를 활용한 대응 방안으로 가장 알맞은 것은?</h4><div id="m21-o2"></div><div class="fb" id="m21-f2"></div></div>`;
+  renderMC('m21-o1','m21-f1',{opts:['교실','운동장','실내 체육관'],ans:1,exp:'그래프의 점선(평균)을 보면 운동장이 가장 높아요. 이렇게 데이터를 <span class="hl2">처리(평균 계산)</span>하면 장소별 특징을 한눈에 비교할 수 있어요. 체육관은 오후로 갈수록 높아지므로 실외가 깨끗할 때 환기하거나 공기 청정기를 켜는 것이 좋아요.',fbs:['교실은 평균이 가장 낮아요. 그래프의 점선 높이를 비교해 보세요.',null,'체육관은 오후에 많이 높아지지만, 하루 평균은 운동장보다 낮아요. 데이터 저장소의 평균 열을 확인하세요.']},
+    first=>{M21.q1=first;$('m21-q2box').style.display='block';
+      renderMC('m21-o2','m21-f2',{opts:['야외 체육 수업을 실내로 옮기고, 밖에 나갈 때는 보건용 마스크를 쓴다.','교실 창문을 활짝 열어 운동장 공기로 환기한다.','미세먼지 농도와 관계없이 계획대로 야외 활동을 한다.','측정값은 믿을 수 없으므로 아무 대응도 하지 않는다.'],ans:0,
+        exp:'"나쁨" 단계에서는 <span class="hl">야외 활동을 자제</span>하고 마스크를 써야 해요. 실시간 측정 데이터는 이렇게 생활 속 의사 결정에 바로 활용돼요.',fbs:[null,'바깥 농도가 높을 때 창문을 열면 오히려 실내 농도가 높아져요.','"나쁨" 단계에서 오래 야외 활동을 하면 호흡기 건강에 해로워요.','측정 데이터를 활용해 대응을 정하는 것이 이번 탐구의 목적이에요.']},
+        f2=>{M21.q2=f2;renderM21();completeMission('m21',4+(M21.q1?3:1)+(f2?3:1),{q1:M21.q1,q2:f2});});});
+}
+
+/* ===================== M22 빅데이터 리스크 ===================== */
+const SCENS={wea:{n:'기상 관측',e:'⛅',per:false,d:'기상 위성·관측소·레이더에서 모은 기온, 습도, 구름 데이터를 분석해 <span class="hl2">날씨와 태풍 경로</span>를 예측해요.'},
+ gen:{n:'유전체 분석',e:'🧬',per:true,d:'많은 사람의 <span class="hl4">유전체 정보</span>를 분석해 질병 위험을 예측하고 맞춤형 치료를 찾아요. 유전 정보는 매우 민감한 <span class="hl">개인 정보</span>예요.'},
+ drug:{n:'신약 개발',e:'💊',per:true,d:'환자들의 <span class="hl4">진료·임상 기록</span>과 화합물 데이터를 분석해 효과 있는 신약 후보를 빠르게 찾아요. 환자 기록은 <span class="hl">개인 정보</span>를 포함해요.'},
+ agr:{n:'농산물 생산성 예측',e:'🌾',per:false,d:'날씨, 토양, 병해충, 과거 수확량 데이터를 분석해 <span class="hl3">농산물 생산량</span>을 예측하고 수급을 조절해요.'}};
+let M22;
+function resetM22(){const d=()=>({vol:20,q:false,b:false,e:false});M22={sc:'wea',v:{wea:d(),gen:d(),drug:d(),agr:d()},cleared:{},fails:0,cardFirst:{},cardDone:{},cardsShown:false};fbHide('m22-fb');$('m22-cards').style.display='none';m22Sync();}
+function m22Model(sc){const s=M22.v[sc],f=s.vol/100,per=SCENS[sc].per;
+  let acc=48+27*f+(s.q?14:-6)+(s.b?10:-4)-(s.e?2:0);acc=Math.max(5,Math.min(97,acc));
+  let risk=per?25+45*f-(s.e?50:0):8+12*f-(s.e?6:0);risk=Math.max(3,Math.min(95,risk));return{acc:Math.round(acc),risk:Math.round(risk),f};}
+function m22Sync(){const s=M22.v[M22.sc];$('m22-vol').value=s.vol;['q','b','e'].forEach(k=>$('tg-'+k).classList.toggle('on',s[k]));m22Update();}
+function m22T(k){M22.v[M22.sc][k]=!M22.v[M22.sc][k];SFX.click();m22Sync();}
+function m22Pick(k){M22.sc=k;SFX.click();fbHide('m22-fb');m22Sync();}
+function volText(f){const man=Math.pow(10,4*f);if(man>=9999)return '1억 건';if(man>=1000)return (Math.round(man/1000)*1000/10000).toFixed(1).replace('.0','')+'억 건';return Math.round(man).toLocaleString()+'만 건';}
+function m22Update(){
+  const s=M22.v[M22.sc];s.vol=+$('m22-vol').value;const m=m22Model(M22.sc);
+  $('m22-volv').textContent=volText(m.f);
+  $('m22-acc').style.width=m.acc+'%';$('m22-acc').style.background=m.acc>=85?'#51cf66':m.acc>=65?'#fcc419':'#ff8787';$('m22-accv').textContent=m.acc+'%';
+  $('m22-risk').style.width=m.risk+'%';$('m22-risk').style.background=m.risk<=25?'#51cf66':m.risk<=50?'#fcc419':'#ff6b6b';$('m22-riskv').textContent=m.risk+'%';
+  const iss=[];if(m.f<0.35)iss.push('📦 데이터 양이 부족해 패턴을 찾기 어려워요.');if(!s.q)iss.push('⚠ 센서 오류·잘못 입력된 값 등 <span class="hl">부정확한 정보</span>가 섞여 있어요.');if(!s.b)iss.push('⚠ 특정 집단·지역에 치우친 데이터로 <span class="hl">편향·오류</span>가 생길 수 있어요.');if(SCENS[M22.sc].per&&!s.e)iss.push('🚨 개인을 알아볼 수 있는 정보가 그대로 있어 <span class="hl">개인 정보 유출</span> 위험이 커요.');
+  $('m22-issues').innerHTML=iss.length?iss.map(t=>`<div class="issue">${t}</div>`).join(''):'<div class="issue good">✅ 데이터 관리 상태가 양호해요!</div>';
+  $('m22-scen').innerHTML=Object.entries(SCENS).map(([k,v])=>`<span class="chip ${M22.cleared[k]?'donep':M22.sc===k?'sel':''}" onclick="m22Pick('${k}')">${v.e} ${v.n} ${v.per?'<small>(개인 정보)</small>':''}${M22.cleared[k]?' ✔':''}</span>`).join('');
+  $('m22-desc').innerHTML=`${SCENS[M22.sc].e} <span class="hl2">${SCENS[M22.sc].n}</span><br>${SCENS[M22.sc].d}`;
+  const n=Object.keys(M22.cleared).length,per=Object.keys(M22.cleared).some(k=>SCENS[k].per),cd=Object.keys(M22.cardDone).length;
+  $('m22-goal').innerHTML=`🎯 목표 <span class="chk">${n>=2&&per?'✅':'⬜'}</span>분석 시스템 승인 2개 (개인 정보 분야 1개 이상 포함) (${n}/2) <span class="chk">${cd>=3?'✅':'⬜'}</span>문제 상황 3개 판별`;
+}
+function m22Submit(){
+  const m=m22Model(M22.sc);
+  if(M22.cleared[M22.sc]){toast('이미 승인된 분야예요. 다른 분야에 도전해 보세요!');return;}
+  if(m.acc>=85&&m.risk<=25){SFX.ok();M22.cleared[M22.sc]=true;
+    fb('m22-fb','ok',`⭕ 승인! ${SCENS[M22.sc].n} 분석 시스템이 정확도 ${m.acc}%, 보안 위험도 ${m.risk}%로 운영돼요. 빅데이터는 <span class="hl3">양이 충분</span>하고 <span class="hl3">품질과 편향을 검증</span>하며, <span class="hl3">개인 정보를 보호</span>할 때 믿고 활용할 수 있어요.`);}
+  else{SFX.no();M22.fails++;const r=[];if(m.acc<85)r.push('예측 정확도가 부족해요 → 데이터 양, 품질 검증, 편향 보정을 확인하세요.');if(m.risk>25)r.push('보안 위험이 너무 높아요 → 개인 정보를 어떻게 보호할지 생각해 보세요.');fb('m22-fb','no','❌ 승인 거절! '+r.join(' '));}
+  m22Update();
+  const keys=Object.keys(M22.cleared),per=keys.some(k=>SCENS[k].per);
+  if(keys.length>=2&&!per)fb('m22-fb','info','💡 개인 정보를 다루는 분야(유전체 분석 또는 신약 개발)도 하나 승인받아야 해요!');
+  if(keys.length>=2&&per&&!M22.cardsShown){M22.cardsShown=true;m22Cards();}
+}
+const CARDS=[{t:'🌡 고장 난 관측 센서가 실제보다 10 ℃ 높은 기온 값을 보내 날씨 예보가 틀렸다.',a:0},{t:'🏥 특정 지역 성인 환자 데이터로만 학습한 진단 프로그램이 어린이와 다른 지역 환자에게는 잘 맞지 않았다.',a:1},{t:'🔓 병원 서버가 해킹당해 환자들의 이름과 유전체 정보가 인터넷에 퍼졌다.',a:2}];
+const CTYPE=['부정확한 정보','편향·오류','개인 정보 유출'];
+function m22Cards(){$('m22-cards').style.display='block';
+  $('m22-clist').innerHTML=CARDS.map((c,i)=>`<div class="argbtn" id="cd${i}"><span>${c.t}</span><span class="pc">${CTYPE.map((t,j)=>`<button class="btn small white" onclick="m22Card(${i},${j},this)">${t}</button>`).join('')}</span></div><div class="fb" id="cdf${i}"></div>`).join('');}
+function m22Card(i,j,el){
+  if(M22.cardDone[i])return;const right=CARDS[i].a===j;if(M22.cardFirst[i]===undefined)M22.cardFirst[i]=right;
+  const exps=['잘못된 측정값은 <span class="hl">데이터 품질 검증</span>으로 걸러내야 해요.','다양한 집단의 데이터를 고르게 모아 <span class="hl">편향</span>을 줄여야 해요.','<span class="hl">암호화·비식별화</span>와 보안 관리로 개인 정보를 지켜야 해요.'];
+  if(right){SFX.ok();M22.cardDone[i]=true;el.className='btn small green';fb('cdf'+i,'ok','⭕ '+CTYPE[j]+'! '+exps[i]);}
+  else{SFX.no();el.disabled=true;el.className='btn small gray';fb('cdf'+i,'no','❌ 다시 생각해 보세요. 문제의 원인이 <span class="hl">데이터 값의 오류</span>인지, <span class="hl">데이터가 한쪽으로 치우친 것</span>인지, <span class="hl">정보가 새어 나간 것</span>인지 구분해요.');}
+  m22Update();
+  if(Object.keys(M22.cardDone).length>=3){const ok=Object.values(M22.cardFirst).filter(x=>x).length;
+    completeMission('m22',6+Math.round(ok/3*4),{fails:M22.fails,cardOk:ok,cleared:Object.keys(M22.cleared).map(k=>SCENS[k].n)});}
+}
+
+/* ===================== M31 미래 도시 ===================== */
+const TECH3=[{k:'rob',n:'로봇·자동화',e:'🤖',g:'공장·물류·돌봄의 생산성 향상, 위험한 일 대신 수행',b:'단순 반복 일자리 감소, 높은 도입 비용'},
+ {k:'iot',n:'사물 인터넷(IoT)',e:'📶',g:'집·도시의 기기를 연결해 편리하고 효율적인 생활, 에너지 절약',b:'해킹·개인 정보 유출 위험, 통신 장애 시 마비'},
+ {k:'ren',n:'신재생 에너지',e:'☀',g:'온실 기체 배출 감소로 환경 개선, 고갈 걱정 없는 에너지',b:'날씨에 따라 발전량 변동, 높은 초기 설치 비용, 넓은 부지 필요'},
+ {k:'bio',n:'의료·바이오 기술',e:'🧬',g:'질병 진단·치료 향상, 건강 수명 연장',b:'높은 의료 비용, 유전 정보 보호와 생명 윤리 문제'}];
+const POLS=[{k:'edu',n:'👩‍🏫 직업 전환 교육·새 일자리 창출',c:30,eff:{job:-45}},{k:'sec',n:'🔐 보안 기술 강화·개인 정보 보호법',c:25,eff:{sec:-45}},
+ {k:'ess',n:'🔋 에너지 저장 장치(ESS)·스마트 그리드',c:30,eff:{lim:-40}},{k:'sub',n:'💰 기술 개발·보조금으로 비용 절감',c:25,eff:{cost:-35}},
+ {k:'rec',n:'♻ 폐배터리·폐패널 자원 재활용',c:20,eff:{lim:-20}},{k:'eth',n:'📜 생명 윤리 심의·안전 기준 마련',c:15,eff:{sec:-15}}];
+const GOODM=[['conv','편의성'],['prod','생산성·효율'],['env','환경 개선'],['hlt','건강·수명']];
+const BADM=[['cost','비용 부담'],['job','일자리 변화(감소)'],['sec','보안·윤리 위험'],['lim','기술·자원 한계']];
+let M31;
+function resetM31(){M31={v:{rob:20,iot:20,ren:20,bio:20},pol:{},seen:{},tries:0,ok:false};fbHide('m31-fb');$('m31-q').style.display='none';m31Render(true);}
+function m31Calc(){const v=M31.v;const G={conv:.45*v.iot+.35*v.rob+.2*v.bio,prod:.5*v.rob+.3*v.iot+.2*v.ren,env:.7*v.ren+.3*v.iot,hlt:.7*v.bio+.3*v.rob};
+  const B={cost:.35*v.ren+.25*v.bio+.2*v.rob+.2*v.iot,job:.8*v.rob+.2*v.iot,sec:.6*v.iot+.4*v.bio,lim:.6*v.ren+.2*v.rob+.2*v.iot};
+  let spent=0;Object.keys(M31.pol).forEach(k=>{if(!M31.pol[k])return;const p=POLS.find(x=>x.k===k);spent+=p.c;Object.entries(p.eff).forEach(([m,d])=>B[m]+=d);});
+  Object.keys(B).forEach(k=>B[k]=Math.max(0,Math.round(B[k])));Object.keys(G).forEach(k=>G[k]=Math.round(G[k]));return{G,B,spent};}
+function m31Render(full){
+  if(!M31)return;
+  if(full||!$('m31-sliders').children.length){
+    $('m31-sliders').innerHTML=TECH3.map(t=>`<div class="sl-row"><div class="top"><span>${t.e} ${t.n}</span><span class="val" id="sv-${t.k}">${M31.v[t.k]}%</span><button class="btn small white" onclick="m31Seen('${t.k}')">🔍 양면성 보기</button></div><input type="range" min="0" max="100" step="5" value="${M31.v[t.k]}" oninput="m31Slide('${t.k}',this.value)"><div class="dual ${M31.seen[t.k]?'show':''}" id="du-${t.k}"><span class="g">👍 유용성: ${t.g}</span><br><span class="b">⚠ 한계: ${t.b}</span></div></div>`).join('');
+  }
+  const {G,B,spent}=m31Calc();
+  $('m31-good').innerHTML=GOODM.map(([k,n])=>`<div class="mlabel"><span>${n}</span><span>${G[k]}</span></div><div class="meter" style="height:16px;margin:2px 0 8px"><div style="width:${Math.min(100,G[k])}%;background:#51cf66"></div></div>`).join('');
+  $('m31-bad').innerHTML=BADM.map(([k,n])=>`<div class="mlabel"><span>${n}</span><span style="color:${B[k]<=40?'#2f9e44':'#c92a2a'}">${B[k]}</span></div><div class="meter" style="height:16px;margin:2px 0 8px"><div style="width:${Math.min(100,B[k])}%;background:${B[k]<=40?'#ffc078':'#ff6b6b'}"></div><span class="tgt" style="left:40%"></span></div>`).join('');
+  $('m31-budget').textContent=100-spent;
+  $('m31-policies').innerHTML=POLS.map(p=>{const eff=Object.entries(p.eff).map(([m,d])=>BADM.find(x=>x[0]===m)[1]+' '+d).join(', ');return `<div class="policy ${M31.pol[p.k]?'sel':''}" onclick="m31Pol('${p.k}')"><span>${M31.pol[p.k]?'✅':'⬜'} ${p.n}<br><small style="color:#868e96">효과: ${eff}</small></span><span class="cost">예산 ${p.c}</span></div>`;}).join('');
+  const seenN=Object.keys(M31.seen).length,techOk=TECH3.every(t=>M31.v[t.k]>=50),badOk=BADM.every(([k])=>B[k]<=40);
+  $('m31-goal').innerHTML=`🎯 목표 <span class="chk">${seenN>=4?'✅':'⬜'}</span>4가지 기술의 양면성 확인 (${seenN}/4) <span class="chk">${techOk?'✅':'⬜'}</span>모든 기술 도입률 <span class="hl">50% 이상</span> <span class="chk">${badOk?'✅':'⬜'}</span>모든 한계 지표 <span class="hl">40 이하</span> (예산 100 안에서 보완책 선택)`;
+  drawCity(G,B);
+}
+function m31Slide(k,v){M31.v[k]=+v;$('sv-'+k).textContent=v+'%';m31Render();}
+function m31Seen(k){M31.seen[k]=true;$('du-'+k).classList.add('show');SFX.click();m31Render();}
+function m31Pol(k){const p=POLS.find(x=>x.k===k);const {spent}=m31Calc();if(!M31.pol[k]&&spent+p.c>100){SFX.no();toast('예산이 부족해요! 다른 보완책을 빼 보세요.');return;}M31.pol[k]=!M31.pol[k];SFX.click();m31Render();}
+function m31Submit(){
+  if(M31.ok){toast('이미 승인된 설계예요!');return;}
+  const {B}=m31Calc();const r=[];
+  if(Object.keys(M31.seen).length<4)r.push('아직 확인하지 않은 기술의 <span class="hl">양면성 보기</span>를 눌러 보세요.');
+  const low=TECH3.filter(t=>M31.v[t.k]<50);if(low.length)r.push(low.map(t=>t.n).join(', ')+' 도입률이 50%보다 낮아요. 기술의 유용성도 누려야 해요.');
+  const hi=BADM.filter(([k])=>B[k]>40);if(hi.length)r.push(hi.map(x=>`<span class="hl4">${x[1]}</span>`).join(', ')+' 지표가 40을 넘어요. 이 한계를 줄여 주는 보완책이 무엇인지 효과를 비교해 보세요.');
+  if(Object.keys(M31.seen).length>=4)M31.tries++;
+  if(r.length){SFX.no();fb('m31-fb','no','❌ 승인 보류! '+r.join(' '));return;}
+  SFX.ok();M31.ok=true;fb('m31-fb','ok',`⭕ 승인! 기술의 <span class="hl3">유용성</span>은 살리고 <span class="hl4">한계</span>는 보완책으로 줄인 균형 잡힌 도시예요. (승인 요청 ${M31.tries}회)`);
+  $('m31-q').style.display='block';
+  renderMC('m31-opts','m31-qfb',{opts:['과학기술은 삶을 편리하게 하지만 한계와 부작용도 있으므로, 보완책과 <span class="hl">인간의 책임 있는 판단</span>이 함께 필요하다.','과학기술은 부작용이 있으므로 새로운 기술 개발을 멈춰야 한다.','기술 도입률을 최대로 높이면 한계는 저절로 사라진다.','기술의 한계는 과학자만 해결해야 하는 문제이다.'],ans:0,
+    exp:'과학기술에는 유용성과 한계가 함께 있는 <span class="hl">양면성</span>이 있어요. 기술을 무조건 거부하거나 무조건 받아들이기보다, 한계를 줄이는 제도·기술적 보완과 사회 구성원 모두의 판단이 필요해요.',
+    fbs:[null,'기술 개발을 멈추면 기술이 주는 유용성(질병 치료, 환경 개선 등)도 누릴 수 없어요.','시뮬레이션에서 도입률을 높이면 한계 지표도 함께 높아졌던 것을 떠올려 보세요.','기술의 영향은 사회 전체에 미치므로 시민, 정부, 기업 모두 함께 판단하고 책임져야 해요.']},
+    first=>{const ms=M31.tries<=3?12:M31.tries<=5?10:8;const sc=4+ms+(first?4:2);
+      const {G,B}=m31Calc();completeMission('m31',sc,{tries:M31.tries,qFirst:first,v:{...M31.v},pols:POLS.filter(p=>M31.pol[p.k]).map(p=>p.n.replace(/^\S+\s/,'')),ms});});
+}
+function drawCity(G,B){
+  const v=M31.v,env=G.env/100;const sky=`rgb(${Math.round(190-60*env)},${Math.round(200+15*env)},${Math.round(210+35*env)})`;
+  let s=`<svg viewBox="0 0 600 300"><rect width="600" height="300" fill="${sky}"/><circle cx="530" cy="55" r="30" fill="#ffd43b" opacity="${0.5+0.5*env}"/>`;
+  s+=`<ellipse cx="200" cy="70" rx="160" ry="35" fill="#868e96" opacity="${Math.max(0,0.55-env*0.8)}"/><ellipse cx="400" cy="90" rx="140" ry="30" fill="#868e96" opacity="${Math.max(0,0.45-env*0.7)}"/>`;
+  s+=`<rect y="240" width="600" height="60" fill="#8ce99a"/><rect y="255" width="600" height="18" fill="#868e96"/>`;
+  const nT=Math.round(v.ren/34);for(let i=0;i<nT;i++){const x=40+i*60;s+=`<rect x="${x-3}" y="150" width="6" height="92" fill="#f1f3f5" stroke="#adb5bd"/><g transform="translate(${x},150)"><g class="spin"><rect x="-2" y="-40" width="4" height="40" fill="#fff" stroke="#adb5bd"/><rect x="-2" y="-40" width="4" height="40" fill="#fff" stroke="#adb5bd" transform="rotate(120)"/><rect x="-2" y="-40" width="4" height="40" fill="#fff" stroke="#adb5bd" transform="rotate(240)"/></g><circle r="5" fill="#495057"/></g>`;}
+  const bl=[[230,130,60,110,'#a5d8ff'],[300,100,70,140,'#d0bfff'],[380,150,60,90,'#ffd8a8'],[450,120,70,120,'#b2f2bb']];
+  bl.forEach(([x,y,w,h,c])=>{s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}" stroke="#495057" stroke-width="2" rx="4"/>`;
+    for(let r=0;r<Math.floor(h/26);r++)for(let cc=0;cc<2;cc++)s+=`<rect x="${x+10+cc*(w/2)}" y="${y+12+r*26}" width="${w/2-18}" height="12" fill="#fff" opacity=".85"/>`;
+    const np=Math.round(v.ren/100*3);for(let p=0;p<np;p++)s+=`<rect x="${x+4+p*(w/3)}" y="${y-10}" width="${w/3-6}" height="8" fill="#1864ab"/>`;
+    if(v.iot>10)s+=`<g opacity="${v.iot/100}"><path d="M${x+w/2-12} ${y-18} q12 -12 24 0" fill="none" stroke="#7048e8" stroke-width="3"/><path d="M${x+w/2-20} ${y-24} q20 -18 40 0" fill="none" stroke="#7048e8" stroke-width="3"/></g>`;});
+  s+=`<text x="520" y="232" font-size="40">🏥</text>${v.bio>=30?`<text x="560" y="190" font-size="${18+v.bio/6}">🧬</text>`:''}`;
+  const nR=Math.round(v.rob/20);for(let i=0;i<nR;i++)s+=`<text x="${230+i*55}" y="252" font-size="24">🤖</text>`;
+  if(B.job>40&&v.rob>=40)s+=`<text x="10" y="292" font-size="15" fill="#c92a2a">😟 일자리를 잃은 시민들이 걱정해요</text>`;
+  if(B.sec>40&&v.iot>=40)s+=`<text x="300" y="292" font-size="15" fill="#c92a2a">🕵 해킹 경보!</text>`;
+  if(B.lim>40&&v.ren>=40)s+=`<text x="410" y="292" font-size="15" fill="#c92a2a">🌥 흐린 날 전력 부족!</text>`;
+  $('city').innerHTML=s+'</svg>';
+}
+
+/* ===================== M41 윤리 위원회 ===================== */
+const ETH=['생명 존중','개인 정보 보호','지식 재산권 존중','정직성과 검증'];
+const SC4=[
+ {k:'car',e:'🚗',n:'자율주행 자동차, 도로를 달려도 될까?',issue:'완전 자율주행 자동차의 일반 도로 운행을 허용해야 할까?',
+  args:[['인간 운전자의 졸음·음주 운전 사고를 줄일 수 있다.',0],['노인·장애인 등 교통 약자의 이동권이 넓어진다.',0],['해킹당하면 대형 사고로 이어질 수 있다.',1],['사고가 났을 때 누구를 우선 보호할지, 누가 책임질지 정하기 어렵다.',1]],
+  reb:{claim:'반대 측: "해킹 위험이 있으니 자율주행차는 절대 허용하면 안 된다."',opts:['보안 인증과 정기 점검 제도로 해킹 위험을 줄이면 기술의 이점도 살릴 수 있다.','해킹은 드물게 일어나므로 신경 쓰지 않아도 된다.','기술 발전은 막을 수 없으므로 무조건 허용해야 한다.'],ans:0,fbs:[null,'위험을 무시하는 것은 근거 있는 반박이 아니에요. 생명과 관련된 위험은 반드시 대비해야 해요.','"무조건"이라는 주장은 상대의 근거(해킹 위험)에 답하지 못해요.']},
+  alt:{opts:['안전 인증, 보안 기준, 사고 책임·보험 법규를 갖춘 뒤 정해진 구역부터 단계적으로 허용한다.','기술이 완벽해질 때까지 연구와 시험 운행도 모두 금지한다.','규제 없이 지금 바로 모든 도로에서 허용한다.'],ans:0,fbs:[null,'시험 운행까지 막으면 안전성을 검증할 기회도 사라져요. 양쪽 입장을 조정한 대안이 아니에요.','반대 측의 걱정(해킹, 책임 문제)을 전혀 반영하지 않은 대안이에요.']},
+  eth:[0,1],ethExp:'자율주행차는 탑승자와 보행자의 <span class="hl">생명</span>과 직결되고, 주행 중 수집하는 <span class="hl">위치·영상 정보</span>를 보호해야 해요.'},
+ {k:'ai',e:'🎨',n:'생성형 AI 창작물, 마음껏 써도 될까?',issue:'과제와 창작 활동에 생성형 인공지능 결과물을 자유롭게 활용해도 될까?',
+  args:[['누구나 쉽게 그림·글을 만들어 창의적 활동의 폭이 넓어진다.',0],['반복적인 작업 시간을 줄여 생산성이 높아진다.',0],['학습에 쓰인 원작자의 저작권을 침해할 수 있다.',1],['사실이 아닌 내용을 그럴듯하게 만들어 표절·허위 정보 문제가 생긴다.',1]],
+  reb:{claim:'찬성 측: "AI가 만든 결과물이니 출처를 밝힐 필요도, 내용을 확인할 필요도 없다."',opts:['AI 결과물도 다른 사람의 저작물을 바탕으로 만들어지고 틀린 내용이 있을 수 있으므로, AI 활용 사실과 출처를 밝히고 사실을 검증해야 한다.','AI는 사람이 아니므로 AI 결과물은 무조건 믿어도 된다.','AI를 쓰면 무조건 표절이므로 절대 사용하면 안 된다.'],ans:0,fbs:[null,'AI도 틀린 정보를 그럴듯하게 만들 수 있어요. 무조건 믿으면 안 돼요.','"무조건 표절"은 지나친 주장이에요. 올바르게 표기하고 검증하면 활용할 수 있어요.']},
+  alt:{opts:['AI 활용 사실 표기, 출처 확인, 사실 검증 규칙을 정해 지키면서 활용한다.','AI 결과물을 자기 작품인 것처럼 자유롭게 제출한다.','학교에서 AI라는 단어도 쓰지 못하게 완전히 금지한다.'],ans:0,fbs:[null,'자기 작품인 것처럼 제출하면 정직성을 어기고 저작권 문제가 생겨요.','완전 금지는 AI의 유용성을 모두 포기하는 극단적 선택이에요.']},
+  eth:[2,3],ethExp:'원작자의 <span class="hl">지식 재산권</span>을 존중하고, AI 활용 사실을 밝히며 결과를 <span class="hl">검증</span>하는 정직한 태도가 필요해요.'},
+ {k:'data',e:'💊',n:'조작된 임상 데이터, 신약 승인해도 될까?',issue:'한 연구팀이 신약 효과를 크게 보이려고 불리한 임상 데이터 일부를 삭제·수정했어요. 빠른 승인을 위해 그대로 발표해도 될까?',
+  args:[['환자들이 새로운 약을 더 빨리 쓸 수 있다.',0],['연구팀이 연구비를 계속 지원받을 수 있다.',0],['조작된 결과로 승인된 약은 환자의 생명과 건강을 위협할 수 있다.',1],['과학 연구 전체에 대한 사회의 신뢰가 무너진다.',1]],
+  reb:{claim:'찬성 측: "데이터를 조금 보정하는 것은 큰 문제가 아니다."',opts:['작은 조작이라도 다른 연구자가 재현·검증할 수 없어 잘못된 치료로 이어질 수 있으므로 원자료를 그대로 공개해야 한다.','다른 연구팀도 그렇게 할 테니 문제없다.','조작이 들키지 않으면 괜찮다.'],ans:0,fbs:[null,'다른 사람이 한다고 해서 잘못이 정당화되지는 않아요.','들키는지 여부가 아니라 연구의 정직성이 핵심이에요.']},
+  alt:{opts:['원자료를 공개하고 동료 검토와 추가 임상 시험으로 효과·안전성을 검증한 뒤 승인 여부를 결정한다.','조작된 데이터 그대로 빨리 승인하고 문제가 생기면 그때 고친다.','이 신약과 관련된 모든 연구를 영원히 금지한다.'],ans:0,fbs:[null,'문제가 생기면 이미 환자가 피해를 본 뒤예요.','연구 자체를 금지하면 정직하게 연구해 좋은 약을 만들 기회도 사라져요.']},
+  eth:[0,3],ethExp:'약은 환자의 <span class="hl">생명</span>과 직결되며, 연구 결과는 <span class="hl">정직하게 보고하고 검증</span>받아야 해요.'}
+];
+let M41;
+function resetM41All(){M41={scores:{},cur:null,st:null,detail:{}};}
+function m41RenderList(){
+  const n=Object.keys(M41.scores).length;
+  $('m41-goal').innerHTML=`🎯 목표 <span class="chk">${n>=2?'✅':'⬜'}</span>쟁점 <span class="hl">2개 이상</span> 토론을 마치고 위원회 합의 도출하기 (${n}/2) <small>· 3개 모두 하면 높은 점수 2개가 반영돼요</small>`;
+  $('m41-list').innerHTML=SC4.map((s,i)=>`<div class="scard ${M41.scores[s.k]!==undefined?'fin':''}" onclick="m41Start(${i})"><div class="emo">${s.e}</div>${s.n}<br><small style="color:#868e96">${M41.scores[s.k]!==undefined?`완료 · 최고 ${M41.scores[s.k]}/10점 · 다시 도전 가능`:'토론 시작하기 ➜'}</small></div>`).join('');
+}
+function m41Start(i){M41.cur=i;M41.st={step:0,cls:{},clsFirst:{},rebFirst:null,altFirst:null,ethSel:{},ethTries:0,altPick:null};SFX.click();$('m41-work').style.display='block';m41Step();setTimeout(()=>$('m41-work').scrollIntoView({behavior:'smooth'}),50);}
+function m41Step(){
+  const s=SC4[M41.cur],st=M41.st,w=$('m41-work');
+  const names=['① 탐색','② 논박','③ 조정·합의 → 대안 생성','④ 과학 윤리 체크'];
+  let h=`<h3>${s.e} ${s.n}</h3><div class="goal">🗣 쟁점: ${s.issue}</div><div class="steps">${names.map((n,i)=>`<span class="st ${i<st.step?'fin':i===st.step?'on':''}">${n}</span>`).join('')}</div>`;
+  if(st.step===0){
+    h+=`<h4>🔎 탐색: 다음 근거가 <span class="hl3">찬성</span>과 <span class="hl4">반대</span> 중 어느 입장을 뒷받침하는지 분류하세요.</h4>`+s.args.map((a,i)=>`<div class="argbtn"><span>${a[0]}</span><span class="pc"><button class="btn small ${st.cls[i]===0?'green':'white'}" onclick="m41Cls(${i},0)">찬성</button><button class="btn small ${st.cls[i]===1?'pink':'white'}" onclick="m41Cls(${i},1)">반대</button></span></div>`).join('')+`<div class="fb" id="m41-fb"></div>`;
+  }else if(st.step===1){h+=`<h4>💬 논박: 상대 주장에 대한 가장 타당한 반박을 고르세요.</h4><div class="card soft">${s.reb.claim}</div><div id="m41-opts"></div><div class="fb" id="m41-fb"></div>`;}
+  else if(st.step===2){h+=`<h4>🤝 조정·합의 → 대안 생성: 찬성과 반대 측의 근거를 모두 반영해 위원회가 합의할 수 있는 대안을 고르세요.</h4><div id="m41-opts"></div><div class="fb" id="m41-fb"></div>`;}
+  else if(st.step===3){h+=`<h4>🧭 과학 윤리 체크: 위원회가 정한 대안이 지켜야 할 핵심 과학 윤리 기준을 <span class="hl">모두</span> 고르세요.</h4><div class="argcard">📜 합의안: ${st.altPick}</div><div>${ETH.map((e,i)=>`<span class="ethic ${st.ethSel[i]?'sel':''}" onclick="m41Eth(${i})">${st.ethSel[i]?'☑':'☐'} ${e}</span>`).join('')}</div><button class="btn purple" onclick="m41EthCheck()">✔ 윤리 점검 완료</button><div class="fb" id="m41-fb"></div>`;}
+  w.innerHTML=h+`<div style="margin-top:8px"><button class="btn gray small" onclick="m41Start(${M41.cur})">↺ 이 쟁점 처음부터</button></div>`;
+  if(st.step===1)renderMC('m41-opts','m41-fb',{opts:s.reb.opts,ans:s.reb.ans,fbs:s.reb.fbs,exp:'상대의 근거를 인정하면서도 <span class="hl2">구체적인 해결 방법과 근거</span>를 제시하는 것이 좋은 반박이에요.'},f=>{st.rebFirst=f;setTimeout(()=>{st.step=2;m41Step();},1500);});
+  if(st.step===2)renderMC('m41-opts','m41-fb',{opts:s.alt.opts,ans:s.alt.ans,fbs:s.alt.fbs,exp:'양쪽 입장의 걱정과 이점을 함께 반영한 <span class="hl3">조건부 대안</span>이 사회적 합의에 이르기 쉬워요.'},f=>{st.altFirst=f;st.altPick=s.alt.opts[s.alt.ans];setTimeout(()=>{st.step=3;m41Step();},1500);});
+}
+function m41Cls(i,j){const s=SC4[M41.cur],st=M41.st;if(st.cls[i]!==undefined||st.step!==0)return;
+  const right=s.args[i][1]===j;if(st.clsFirst[i]===undefined)st.clsFirst[i]=right;
+  if(right){SFX.ok();st.cls[i]=j;m41Step();}else{SFX.no();m41Step();fb('m41-fb','no','❌ 다시 생각해 보세요! 이 근거는 허용(찬성)과 반대 중 어떤 결론을 지지할까요?');return;}
+  if(Object.keys(st.cls).length===4){fb('m41-fb','ok','⭕ 탐색 완료! 양쪽 입장의 근거를 모두 확인했어요. 이제 논박 단계로 가요.');setTimeout(()=>{st.step=1;m41Step();},1500);}
+}
+function m41Eth(i){M41.st.ethSel[i]=!M41.st.ethSel[i];SFX.click();m41Step();}
+function m41EthCheck(){
+  const s=SC4[M41.cur],st=M41.st;const sel=ETH.map((e,i)=>!!st.ethSel[i]);const corr=ETH.map((e,i)=>s.eth.includes(i));
+  if(!sel.some(x=>x)){toast('하나 이상 골라 주세요!');return;}
+  st.ethTries++;const exact=sel.every((v,i)=>v===corr[i]);
+  if(exact){SFX.ok();const ethScore=st.ethTries===1?3:st.ethTries===2?2:1;
+    const clsOk=Object.values(st.clsFirst).filter(x=>x).length;const sc=Math.round(clsOk/4*3)+(st.rebFirst?2:1)+(st.altFirst?2:1)+ethScore;
+    if(M41.scores[s.k]===undefined||sc>=M41.scores[s.k]){M41.scores[s.k]=sc;M41.detail[s.k]={n:s.n,alt:st.altPick,eth:s.eth.map(i=>ETH[i]),score:sc};}
+    $('m41-work').innerHTML=`<div style="text-align:center"><div class="big-emoji">🏛️🤝</div><h3>위원회 합의 도출!</h3><div class="argcard" style="text-align:left">📜 <span class="hl">합의안</span>: ${st.altPick}<br>🧭 <span class="hl5">윤리 기준</span>: ${s.eth.map(i=>ETH[i]).join(', ')} — ${s.ethExp}</div><p>이번 토론 점수: <span class="hl">${sc}</span>/10</p></div>`;
+    m41RenderList();
+    const vals=Object.values(M41.scores).sort((a,b)=>b-a);
+    if(vals.length>=2){const top=Object.values(M41.detail).sort((a,b)=>b.score-a.score);completeMission('m41',vals[0]+vals[1],{list:top});}
+  }else{SFX.no();const miss=ETH.filter((e,i)=>corr[i]&&!sel[i]),extra=ETH.filter((e,i)=>!corr[i]&&sel[i]);
+    fb('m41-fb','no','❌ 다시 점검해요. '+(miss.length?`이 쟁점과 깊이 관련된 기준이 빠졌어요. 쟁점에서 <span class="hl">무엇이 위협받는지</span> 다시 생각해 보세요. `:'')+(extra.length?`<span class="hl4">${extra.join(', ')}</span>은(는) 이 쟁점의 핵심 기준과 거리가 있어요.`:''));}
+}
+
+/* ===================== 퀴즈 ===================== */
+const QUIZ=[
+ {q:'분자 진단 검사(PCR)의 원리로 옳은 것은?',o:['바이러스의 핵산을 반복 복제·증폭하여 검출한다.','바이러스의 단백질을 항체와 결합시켜 색 변화로 검출한다.','체온을 측정해 감염 여부를 판단한다.','혈액 속 적혈구 수를 세어 판단한다.'],a:0,e:'PCR은 바이러스의 <span class="hl">핵산(유전 물질)</span>을 증폭해 적은 양도 검출해요.',f:[null,'이것은 신속 항원 검사의 원리예요.','체온은 증상일 뿐 감염을 정확히 진단하지 못해요.','적혈구 수는 감염병 진단 원리와 관련이 없어요.']},
+ {q:'신속 항원 검사에 대한 설명으로 옳은 것은?',o:['결과가 빨리 나오지만 바이러스 양이 적으면 음성으로 나올 수 있다.','핵산을 증폭하므로 PCR보다 항상 정확하다.','결과를 얻는 데 며칠이 걸린다.','바이러스가 없어도 항상 양성이 나온다.'],a:0,e:'신속 항원 검사는 바이러스 <span class="hl">단백질</span>을 검출하며 빠르지만 감염 초기에는 놓칠 수 있어요.',f:[null,'핵산을 증폭하는 것은 PCR이에요.','신속 항원 검사는 약 15분이면 결과가 나와요.','바이러스가 없으면 C선만 나타나 음성이에요.']},
+ {q:'감염병 확산을 막기 위한 접촉자 추적에 활용되는 데이터로 가장 거리가 먼 것은?',o:['좋아하는 음식 순위','휴대 전화 위치 정보','QR 출입 기록','신용 카드 사용 기록'],a:0,e:'접촉자 추적에는 <span class="hl">위치 정보, 출입 기록, 카드 사용 기록</span> 같은 이동 경로 데이터가 활용돼요.',f:[null,'위치 정보는 확진자의 이동 경로를 파악하는 데 쓰여요.','출입 기록은 같은 장소에 있던 접촉자를 찾는 데 쓰여요.','카드 사용 기록은 방문 장소와 시간을 확인하는 데 쓰여요.']},
+ {q:'빅데이터를 활용하는 과정의 순서로 옳은 것은?',o:['수집 → 저장 → 처리·분석 → 활용','분석 → 수집 → 활용 → 저장','활용 → 저장 → 수집 → 분석','저장 → 활용 → 분석 → 수집'],a:0,e:'데이터를 <span class="hl">수집·저장</span>한 뒤 <span class="hl">처리·분석</span>하여 의사 결정에 <span class="hl">활용</span>해요.',f:[null,'데이터가 없으면 분석할 수 없어요. 먼저 모아야 해요.','활용은 분석 결과를 얻은 뒤에 할 수 있어요.','저장하려면 먼저 수집해야 해요.']},
+ {q:'시간대별 미세먼지 농도 변화를 그래프로 나타낼 때 가장 적절한 축 설정은?',o:['가로축: 시간, 세로축: 미세먼지 농도','가로축: 미세먼지 농도, 세로축: 장소 이름','가로축: 학생 수, 세로축: 시간','가로축: 측정 기기 가격, 세로축: 농도'],a:0,e:'변화의 기준이 되는 <span class="hl">시간</span>을 가로축에, 측정값인 <span class="hl">농도</span>를 세로축에 두어요.',f:[null,'장소 이름은 연속적인 값이 아니어서 시간에 따른 변화를 보여 주지 못해요.','학생 수는 이번 탐구의 변인이 아니에요.','기기 가격은 농도 변화와 관계가 없어요.']},
+ {q:'빅데이터 활용의 문제점과 해결 방안을 바르게 짝지은 것은?',o:['개인 정보 유출 - 암호화·비식별화','데이터 편향 - 한 지역 데이터만 더 많이 모으기','부정확한 정보 - 오류 데이터도 모두 그대로 사용하기','개인 정보 유출 - 실명과 주소를 함께 공개하기'],a:0,e:'개인 정보는 <span class="hl">암호화·비식별화</span>로 보호하고, 편향은 다양한 데이터로, 부정확한 정보는 품질 검증으로 해결해요.',f:[null,'한 지역 데이터만 모으면 편향이 더 심해져요.','오류 데이터는 품질 검증으로 걸러내야 해요.','실명과 주소를 공개하면 유출 위험이 더 커져요.']},
+ {q:'로봇·자동화 기술의 양면성을 가장 잘 나타낸 것은?',o:['생산성이 높아지지만 일부 일자리가 줄어들 수 있다.','생산성이 낮아지고 일자리도 줄어든다.','어떤 부작용도 없이 장점만 있다.','환경 오염을 일으키므로 장점이 전혀 없다.'],a:0,e:'과학기술은 <span class="hl3">유용성</span>과 <span class="hl4">한계</span>를 함께 지니는 양면성이 있어요.',f:[null,'자동화는 생산성을 높이는 장점이 있어요.','모든 기술에는 한계나 부작용이 함께 있어요.','장점이 전혀 없다는 것은 지나친 주장이에요.']},
+ {q:'신재생 에너지(태양광·풍력)의 한계에 해당하는 것은?',o:['날씨에 따라 발전량이 달라지고 초기 설치 비용이 크다.','온실 기체를 많이 배출한다.','자원이 곧 고갈된다.','전기를 전혀 만들 수 없다.'],a:0,e:'신재생 에너지는 환경에 이롭지만 <span class="hl">발전량 변동과 비용</span>이 한계예요. 에너지 저장 장치(ESS) 같은 기술로 보완해요.',f:[null,'신재생 에너지는 온실 기체 배출이 적은 것이 장점이에요.','햇빛과 바람은 고갈되지 않아요.','태양광과 풍력은 실제로 전기를 생산해요.']},
+ {q:'자율주행 자동차와 관련된 사회적·윤리적 쟁점으로 가장 적절한 것은?',o:['사고가 났을 때 누구를 우선 보호하고 누가 책임질 것인가?','자동차의 색깔을 무엇으로 정할 것인가?','자동차에 음악을 몇 곡 넣을 것인가?','자동차 바퀴를 몇 개로 할 것인가?'],a:0,e:'자율주행차는 <span class="hl">사고 시 보호 우선순위, 책임 소재, 해킹 위험</span> 등이 쟁점이에요.',f:[null,'색깔은 개인 취향일 뿐 윤리적 쟁점이 아니에요.','음악 선택은 사회적 쟁점이 아니에요.','바퀴 수는 기술 설계 문제일 뿐 윤리적 쟁점이 아니에요.']},
+ {q:'생성형 인공지능 결과물을 활용하는 태도로 가장 바람직한 것은?',o:['AI 활용 사실과 출처를 밝히고, 내용이 사실인지 스스로 검증한다.','AI가 만든 내용은 항상 정확하므로 그대로 믿는다.','AI 결과물을 내가 직접 만든 것처럼 제출한다.','AI가 만든 그림은 누구의 권리도 침해하지 않는다.'],a:0,e:'디지털 정보와 AI 결과물을 <span class="hl">비판적으로 검증</span>하고, 최종 판단과 책임은 <span class="hl">사람</span>에게 있어요.',f:[null,'AI도 틀린 정보를 그럴듯하게 만들 수 있어요.','자기 작품처럼 제출하는 것은 정직성 위반이에요.','AI가 학습한 원작자의 저작권 문제가 생길 수 있어요.']}
+];
+let QZ;
+function resetQuiz(){QZ={i:0,first:{}};}
+function renderQuiz(){
+  if(!QZ)resetQuiz();
+  if(QZ.i>=QUIZ.length){$('qbar').style.width='100%';$('quizBox').innerHTML=`<div style="text-align:center"><div class="big-emoji">📝✨</div><h3>모든 문제를 풀었어요!</h3><button class="btn orange" onclick="goResult()">🏆 미션 성공 보기</button></div>`;return;}
+  const n=QZ.i,q=QUIZ[n];$('qbar').style.width=(n/QUIZ.length*100)+'%';
+  $('quizBox').innerHTML=`<h3>Q${n+1}. ${q.q} <small style="color:#868e96">(${n+1}/${QUIZ.length})</small></h3><div id="qz-opts"></div><div class="fb" id="qz-fb"></div><div id="qz-next"></div>`;
+  renderMC('qz-opts','qz-fb',{opts:q.o,ans:q.a,exp:q.e,fbs:q.f},first=>{QZ.first[n]=first;
+    $('qz-next').innerHTML=`<button class="btn green" onclick="quizNext()">${n+1<QUIZ.length?'다음 문제 ➜':'채점하기 ✔'}</button>`;});
+}
+function quizNext(){QZ.i++;SFX.click();renderQuiz();if(QZ.i>=QUIZ.length){const ok=Object.values(QZ.first).filter(x=>x).length;completeMission('quiz',ok*2,{ok,wrong:QUIZ.map((q,i)=>QZ.first[i]?null:i+1).filter(x=>x)});}}
+
+/* ===================== 결과 ===================== */
+function total(){return Object.keys(MAX).reduce((s,k)=>s+(ST.score[k]||0),0);}
+function gradeOf(t){return t>=90?'A':t>=80?'B':t>=70?'C':t>=60?'D':'F';}
+function fbText(k){
+  const d=ST.detail[k]||{},s=ST.score[k]||0,full=s>=MAX[k];
+  switch(k){
+  case 'm11':return full?`세 시료의 진단 결과를 모두 정확하게 판독했고, 환자 B의 사례에서 <span class="hl2">핵산을 증폭하는 PCR</span>이 적은 양의 바이러스도 검출할 수 있음을 잘 설명했어요.`:
+    `진단 실험을 끝까지 수행했어요. ${d.ok<d.total?`다만 판독 ${d.total}회 중 ${d.total-d.ok}회는 처음에 잘못 읽었어요. <span class="hl">C선만 있으면 음성, C선과 T선이 모두 있으면 양성</span>, PCR은 <span class="hl">곡선이 기준선을 넘으면 양성</span>이라는 판독 기준을 다시 확인해 보세요. `:''}${!d.qFirst?'환자 B의 결과가 달랐던 까닭(핵산 증폭과 단백질 검출의 차이)을 처음에 헷갈렸어요.':''}`;
+  case 'm12':return full?`대응 방법을 바꿔 가며 실험하고, 최대 감염자 수를 비교하여 <span class="hl2">진단과 접촉자 추적</span>이 전파 고리를 끊는 원리를 정확히 해석했어요.`:`두 조건의 실험을 모두 수행했지만, 결과 해석 질문에서 처음에 다른 답을 골랐어요. 감염자를 <span class="hl">빨리 찾아 격리하고 접촉자를 추적</span>하면 왜 확산이 줄어드는지 그래프를 다시 비교해 보세요.`;
+  case 'm13':return full?`두 가지 미래 사회 문제(${(d.args||[]).map(a=>a.p).join(', ')})에 알맞은 과학기술을 정확히 골라, 과학이 필요하다는 주장을 근거와 함께 논증했어요.`:`논증 카드를 완성했어요(${(d.args||[]).map(a=>a.p).join(', ')}). 하지만 문제와 관련 없는 기술을 ${d.wrong}번 골랐어요. 각 문제의 <span class="hl">원인</span>을 먼저 떠올리고 그 원인을 해결하는 기술을 고르는 연습을 해 보세요.`;
+  case 'm21':return full?`3개 장소의 미세먼지 데이터를 시간대별로 빠짐없이 수집·저장하고, 평균을 계산해 그래프로 분석한 뒤 <span class="hl2">'나쁨' 단계에 알맞은 대응</span>을 결정했어요.`:`15개의 데이터를 모두 수집하고 처리했어요. ${!d.q1?'평균 농도가 가장 높은 장소를 처음에 잘못 골랐어요. 그래프의 평균선과 데이터 저장소의 평균 열을 비교해 보세요. ':''}${!d.q2?'측정값의 등급에 따른 대응 방안(야외 활동 자제·마스크 착용)을 처음에 헷갈렸어요.':''}`;
+  case 'm22':return full?`${(d.cleared||[]).join(', ')} 분야에서 데이터 양·품질 검증·편향 보정·개인 정보 보호를 모두 고려해 신뢰할 수 있는 분석 시스템을 만들었고, 빅데이터의 문제 상황 3가지를 정확히 판별했어요.`:`분석 시스템 승인에 성공했어요(${(d.cleared||[]).join(', ')}). 그러나 문제 상황 판별에서 ${3-(d.cardOk||0)}개를 처음에 틀렸어요. <span class="hl">부정확한 정보 / 편향·오류 / 개인 정보 유출</span>의 차이를 다시 정리해 보세요.`;
+  case 'm31':return full?`4가지 기술의 양면성을 확인하고, 적은 시도(${d.tries}회) 만에 예산 안에서 보완책(${(d.pols||[]).join(', ')})을 골라 유용성과 한계의 균형을 맞췄어요.`:`보완책(${(d.pols||[]).join(', ')})으로 균형 잡힌 도시 설계에 성공했어요. ${d.ms<12?`다만 승인 요청을 ${d.tries}번 했어요. 각 보완책이 <span class="hl">어떤 한계 지표를 줄이는지</span> 먼저 분석한 뒤 계획적으로 선택해 보세요. `:''}${!d.qFirst?'양면성의 의미를 묻는 질문에서 처음에 다른 답을 골랐어요.':''}`;
+  case 'm41':{const l=(d.list||[]).slice(0,2);return l.map(x=>`「${x.n}」 쟁점에서 '${x.alt}'라는 합의안을 도출하고 <span class="hl5">${x.eth.join('·')}</span> 기준을 점검했어요(${x.score}/10점).`).join(' ')+(full?' 근거 분류, 논박, 대안 생성, 윤리 점검을 모두 정확하게 수행했어요.':' 일부 단계에서 처음 선택이 틀렸어요. 근거를 찬반으로 분류하고, 상대 근거에 답하는 반박과 양측을 조정한 대안을 고르는 연습을 더 해 보세요.');}
+  case 'quiz':return full?'10문항을 모두 처음에 맞혀 3단원의 핵심 개념을 정확히 이해했어요.':`10문항 중 ${d.ok}문항을 처음에 맞혔어요. 처음에 틀린 문항(${(d.wrong||[]).map(x=>x+'번').join(', ')})의 피드백을 다시 읽어 보세요.`;
+  }return '';
+}
+const REDO_TIP={m11:'판독 기준(C선·T선, 기준선)과 PCR의 핵산 증폭 원리를 확인하며 진단 실험 다시 하기',m12:'대응 없음과 진단+추적 그래프를 비교하고 해석 질문 다시 풀기',m13:'문제의 원인과 연결되는 과학기술만 골라 논증 다시 완성하기',m21:'평균값과 등급 기준을 확인하며 측정·분석 다시 하기',m22:'빅데이터 문제점 3가지를 구분하며 리스크 검증 다시 하기',m31:'보완책별 효과를 먼저 분석하고 적은 시도로 균형 맞추기',m41:'점수가 낮은 쟁점(또는 아직 하지 않은 쟁점)에 다시 도전하기',quiz:'피드백을 복습한 뒤 퀴즈 다시 풀기'};
+function redo(k){
+  ST.retry=true;closeOv();
+  const s=MSTAGE[k];
+  if(k==='m11')resetM11();if(k==='m12')resetM12();if(k==='m13')resetM13();if(k==='m21')resetM21();if(k==='m22')resetM22();if(k==='m31')resetM31();if(k==='quiz')resetQuiz();
+  if(k==='m41')$('m41-work').style.display='none';
+  show(s);if(s==='s1'||s==='s2')openM(s,k);
+}
+function renderResult(){
+  const t=total(),g=gradeOf(t);const now=new Date();const mail=$('brandMail').textContent;
+  const msg={A:'최고의 미래 사회 수호대원이에요! 과학의 유용성과 한계를 모두 이해하고 윤리적으로 판단할 수 있어요.',B:'훌륭해요! 조금만 더 보완하면 최고 등급에 도달할 수 있어요.',C:'핵심 개념을 이해하고 있어요. 부족한 과정을 다시 수행해 실력을 키워 봐요.',D:'기본 과정을 마쳤어요. 아래 안내에 따라 부족한 미션을 다시 해 보세요.',F:'아직 보완할 부분이 많아요. 아래 미션을 차근차근 다시 수행해 보세요.'}[g];
+  const rows=Object.keys(MAX).map(k=>{const s=ST.score[k]||0,p=s/MAX[k]*100;return `<div class="barrow"><span class="nm">${MNAME[k]}</span><span class="bar"><div style="width:${p}%;background:${p>=90?'#51cf66':p>=70?'#fcc419':'#ff922b'}"></div></span><span class="sc">${s}/${MAX[k]}</span></div>`;}).join('');
+  const stName={s1:'STAGE 1 과학의 유용성과 필요성',s2:'STAGE 2 빅데이터 활용',s3:'STAGE 3 과학기술의 발전과 한계',s4:'STAGE 4 사회적 쟁점과 과학 윤리',quiz:'최종 점검 퀴즈'};
+  let fbHtml='';['s1','s2','s3','s4','quiz'].forEach(s=>{fbHtml+=`<h4 class="hl2" style="margin-top:10px">${stName[s]}</h4>`;STAGE_M[s].forEach(k=>{const weak=(ST.score[k]||0)<MAX[k];fbHtml+=`<div class="fbitem ${weak?'weak':''}"><span class="${weak?'hl':'hl3'}">${weak?'▲':'●'} ${MNAME[k]}</span> — ${fbText(k)}</div>`;});});
+  const args=(ST.detail.m13&&ST.detail.m13.args)||[];const m31=ST.detail.m31;
+  const myWork=`<h3 style="margin-top:14px">📝 나의 활동 기록</h3>`+args.map(a=>`<div class="argcard">📣 미래 사회의 <span class="hl4">${a.p}</span> 문제를 해결하려면 과학이 필요하다. — 근거: <span class="hl2">${a.t1}</span>, <span class="hl2">${a.t2}</span></div>`).join('')+(m31?`<div class="argcard" style="border-left-color:#20c997">🏙 나의 미래 도시: 로봇·자동화 ${m31.v.rob}% · IoT ${m31.v.iot}% · 신재생 ${m31.v.ren}% · 의료·바이오 ${m31.v.bio}% / 보완책: ${m31.pols.join(', ')}</div>`:'')+((ST.detail.m41&&ST.detail.m41.list)||[]).slice(0,2).map(x=>`<div class="argcard" style="border-left-color:#9775fa">⚖ ${x.n}<br>합의안: ${x.alt}</div>`).join('');
+  const weakKeys=Object.keys(MAX).filter(k=>(ST.score[k]||0)<MAX[k]).sort((a,b)=>((ST.score[a]||0)/MAX[a])-((ST.score[b]||0)/MAX[b]));
+  const next={F:'D',D:'C',C:'B',B:'A'}[g];const need={F:60,D:70,C:80,B:90}[g];
+  let up='';
+  if(!weakKeys.length)up=`<div class="upgrade">🌟 모든 수행 과정을 만점으로 완료했어요. 더 이상 보완할 과정이 없어요!</div>`;
+  else{up=`<div class="upgrade"><h4>🚀 ${g==='A'?'만점에 도전하려면':`<span class="hl">${next}등급</span>으로 올리려면 (${need-t}점 이상 더 필요)`}</h4><div style="font-size:16px">아래의 <span class="hl">부족한 과정만</span> 다시 수행하면 돼요. 다시 하면 더 높은 점수가 반영돼요.</div>`+weakKeys.map(k=>`<div class="uprow"><span>▲ <span class="hl">${MNAME[k]}</span> (${ST.score[k]||0}/${MAX[k]}, ${MAX[k]-(ST.score[k]||0)}점 보완 가능)<br><small>${REDO_TIP[k]}</small></span><button class="btn small orange" data-html2canvas-ignore="true" onclick="redo('${k}')">🔁 이 과정 다시 하기</button></div>`).join('')+'</div>';}
+  $('report').innerHTML=`<div class="rep-head"><div><h2 style="color:#1864ab;margin:0">🏆 MISSION SUCCESS</h2><div>미래 사회 수호대 · 통합과학2 3단원 과학과 미래 사회</div><div style="font-size:16px;color:#868e96">${ST.sid} ${ST.name} · ${now.getFullYear()}.${now.getMonth()+1}.${now.getDate()}</div></div><div style="text-align:right;font-size:14px;color:#495057"><img src="${document.querySelector('.brand img').src}" alt="로고"><br>${mail}</div></div>
+  <div class="grid2" style="align-items:center"><div style="text-align:center"><div class="grade g${g}">${g}</div><div style="font-size:24px;margin-top:6px">총점 <span class="hl">${t}</span> / 100</div><div style="font-size:15px;color:#868e96">A 90↑ · B 80↑ · C 70↑ · D 60↑ · F 60 미만</div></div><div>${rows}</div></div>
+  <div class="fbitem" style="border-left-color:#ffd43b;background:#fff9db">💬 ${ST.name} 대원, ${msg}</div>
+  <h3 style="margin-top:14px">🔍 수행 과정 피드백</h3>${fbHtml}${myWork}${up}`;
+}
+
+/* ===================== 이미지 저장 (iPad 대응) ===================== */
+const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+let PV={blob:null,url:null,name:''};
+async function saveImage(){
+  if(typeof html2canvas==='undefined'){toast('이미지 도구를 불러오지 못했어요. 인터넷 연결을 확인하세요.');return;}
+  toast('이미지를 만드는 중이에요...');
+  const el=$('report');const w=el.scrollWidth,h=el.scrollHeight;
+  let scale=Math.min(2,window.devicePixelRatio||1.5);const maxArea=isIOS?15000000:40000000,maxDim=isIOS?4000:16000;
+  while((w*h*scale*scale>maxArea||h*scale>maxDim)&&scale>0.4)scale-=0.1;
+  try{
+    const cv=await html2canvas(el,{scale,backgroundColor:'#ffffff',useCORS:true,logging:false});
+    cv.toBlob(b=>{
+      if(!b||b.size<2000){toast('이미지 생성에 실패했어요. 다시 시도해 주세요.');return;}
+      if(PV.url)URL.revokeObjectURL(PV.url);PV.blob=b;PV.url=URL.createObjectURL(b);PV.name=`미래사회수호대_${ST.sid}_${ST.name}.png`;
+      $('pvImg').src=PV.url;
+      $('pvTip').innerHTML=isIOS?'📱 아이패드·아이폰: <span class="hl">이미지 저장하기</span>를 누르고 공유 창에서 <span class="hl2">이미지 저장</span> 또는 <span class="hl2">파일에 저장</span>을 고르세요.<br>버튼이 작동하지 않으면 위 이미지를 <span class="hl">길게 눌러 \'사진 앱에 저장\'</span>하세요.':'💻 <span class="hl">이미지 저장하기</span>를 누르면 PNG 파일로 내려받아요.';
+      $('pv').classList.add('show');SFX.ok();
+    },'image/png');
+  }catch(e){toast('이미지 생성 중 오류가 발생했어요.');}
+}
+async function doSave(){
+  if(!PV.blob)return;
+  if(isIOS&&navigator.canShare){try{const f=new File([PV.blob],PV.name,{type:'image/png'});if(navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'미션 성공 보고서'});return;}}catch(e){if(e&&e.name==='AbortError')return;}}
+  if(isIOS){toast('이미지를 길게 눌러 \'사진 앱에 저장\'을 선택하세요.');return;}
+  const a=document.createElement('a');a.href=PV.url;a.download=PV.name;document.body.appendChild(a);a.click();a.remove();toast('이미지를 내려받았어요!');
+}
+function closePv(){$('pv').classList.remove('show');}
+
+/* ===================== 초기화 ===================== */
+resetM11();resetM12();resetM13();resetM21();resetM22();resetM31();resetM41All();resetQuiz();renderNav();refreshTabs();
+
+</script>
+</body>
+</html>
